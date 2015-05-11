@@ -1,0 +1,17 @@
+{
+  "name": "infovis",
+  "version": "1.0.0",
+  "description": "Eine Informationsvisualisierung der VBB-Fahrplandaten von Dezember 2014 bis Dezember 2015. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "infovis",
+    "gestaltung",
+    "tu",
+    "dresden"
+  ],
+  "author": "Fabian Gündel",
+  "license": "ISC"
+}
