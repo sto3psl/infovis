@@ -9,7 +9,7 @@
     "js": "gulp build-js",
     "clean": "gulp clean",
     "build": "gulp clean && (gulp css & gulp build-js)",
-    "start": " npm run build && (http-server build -p 3000)"
+    "start": " npm run build && (drudge -t -d build)"
   },
   "repository": {
     "type": "git",
@@ -44,10 +44,10 @@
     "cssnext": "^1.4.0",
     "csswring": "^3.0.4",
     "del": "^1.1.1",
+    "drudge": "^2.0.0",
     "gulp": "^3.8.11",
     "gulp-postcss": "^5.1.6",
     "gulp-rename": "^1.2.2",
-    "http-server": "^0.8.0",
     "jade": "^1.9.2",
     "jadeify": "^4.3.0",
     "postcss": "^4.1.9",
