@@ -1,7 +1,6 @@
 var View = require('ampersand-view')
 var template = require('../templates/app.jade')
 
-var test = "hello"
 // make this the general app view
 var app = View.extend({
   template: template,
@@ -9,9 +8,9 @@ var app = View.extend({
 
   },
   bindings: {
-    'test': {
+    'model.name': {
       type: 'text',
-      hook: 'test'
+      hook: 'name'
     }
   },
   render: function () {
