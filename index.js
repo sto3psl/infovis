@@ -1,5 +1,5 @@
 var domready = require('domready')
-var parseCSV = require('./parser')
+var Route = require('./models/routes')
 
 var App = require('./views/app')
 
@@ -10,5 +10,11 @@ domready(function () {
   self.view = new App({ el: document.body })
   self.view.render()
 
-  parseCSV('data/routes.csv')
+  var me = new Route({
+    data: {
+      'name': 'fabian'
+    }
+  })
+
+  console.log(me.data.name)
 })

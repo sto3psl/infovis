@@ -9,7 +9,7 @@
     "js": "gulp build-js",
     "clean": "gulp clean",
     "build": "gulp clean && (gulp css & gulp build-js)",
-    "start": " npm run build && (drudge -t -d build)"
+    "start": " npm run build && (http-server build -p 3000)"
   },
   "repository": {
     "type": "git",
@@ -55,6 +55,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "ampersand-model": "^5.0.3",
     "ampersand-view": "^7.3.0",
     "d3": "^3.5.5",
     "domready": "^1.0.8",
