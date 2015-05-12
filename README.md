@@ -35,6 +35,15 @@ npm install
 npm start
 ```
 
+**Hinweis!** Die CSV-Dateien liegen nicht im git (eine ist über 400mb groß). Bitte ladet sie selbst runter und legt sie in den Ordner:
+
+```
+./build/data
+```
+
+Dieser Ordner steht auch in der `.gitignore`, damit ihr nicht ausversehen 400mb Daten hochladet.
+
+
 Die App ist dann unter `http://localhost:3000/` zu erreichen.
 
 ##Libraries/Frameworks
