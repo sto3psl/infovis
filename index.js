@@ -1,21 +1,17 @@
 var domready = require('domready')
-var Route = require('./models/routes')
-var parseCSV = require('./parser')
+var Model = require('./models/model')
 var Papa = require('papaparse')
 
 var App = require('./views/app')
 
+var routes = new Model('routes')
 Papa.parse('./data/routes.csv', {
-    download: true,
-    complete: function (results) {
-      console.log(results)
-
-      var me = new Route({
-        data: results
-      })
-      console.log(me.data)
-    }
-  })
+  download: true,
+  complete: function (results) {
+    routes.data = results
+    console.log(routes.data)
+  }
+})
 
 // Code wird erst ausgeführt wenn die DOM geladen wurde
 domready(function () {
@@ -23,6 +19,7 @@ domready(function () {
 
   self.view = new App({ el: document.body })
   self.view.render()
-
+  setTimeout(function () {
+    console.log(routes.data)
+  }, 2000)
 })
-
