@@ -7,17 +7,14 @@ var app = View.extend({
   events: {
 
   },
-  bindings: {
-    'model.name': {
-      type: 'text',
-      hook: 'name'
-    }
-  },
-  render: function () {
-    this.renderWithTemplate()
-
-    return this
+  initialize: function () {
+    this.listenTo(this.collection, 'reset', this.render)
   }
+  // render: function () {
+  //   this.renderWithTemplate()
+
+//   return this
+// }
 })
 
 module.exports = app

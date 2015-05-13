@@ -1,3 +1,4 @@
 body
   h1 InfoVis VBB-Fahrplandaten
-  p(data-hook="name") test
+  each route in collection.models
+    p #{route.route_id}
