@@ -1,3 +1,6 @@
+[![Dependency Status](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot.svg)](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot)
+[![devDependency Status](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot/dev-status.svg)](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot#info=devDependencies)
+
 #InfoVis VBB-Fahrplandaten Starplot
 
 **Interaktive Informationsvisualisierung**
