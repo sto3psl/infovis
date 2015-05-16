@@ -15,7 +15,7 @@ Papa.parse('./data/routes.csv', {
   download: true,
   header: true,
   complete: function (results) {
-    routes.reset(results.data)
+    routes.reset(results.data[0])
     console.log(results.data[0])
   }
 })
