@@ -4,3 +4,7 @@
 body {
   color: var(--font-color);
 }
+
+.object {
+  background: #ccc;
+}
