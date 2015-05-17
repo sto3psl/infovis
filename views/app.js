@@ -1,7 +1,7 @@
 var View = require('ampersand-view')
 var template = require('../templates/app.jade')
 
-var Routes = require('./routes')
+var StarPlot = require('./starplot')
 
 // make this the general app view
 var app = View.extend({
@@ -16,7 +16,7 @@ var app = View.extend({
   render: function () {
     this.renderWithTemplate()
 
-    this.renderSubview(new Routes({ collection: this.collection}))
+    this.renderSubview(new StarPlot({ collection: this.collection}))
     return this
   }
 })
