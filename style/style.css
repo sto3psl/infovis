@@ -1,10 +1,18 @@
 @import "normalize.css";
 @import "./variables.css";
+@import "./svg.css";
 
-body {
+html {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.004);
   color: var(--font-color);
 }
 
-.object {
-  background: #ccc;
+main {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
 }

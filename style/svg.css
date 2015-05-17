@@ -1,0 +1,23 @@
+/* Hier kommen alle Styles rein die sich auf SVG beziehen */
+svg {
+  background: #53c0c0;
+  display: block;
+  width: 20vw;
+  height: 20vw;
+  margin: 0 auto;
+}
+
+line {
+  stroke: grey;
+}
+
+circle {
+  fill: white;
+}
+
+text {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+  font-size: var(--svg-font-size);
+  fill: white;
+}
