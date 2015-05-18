@@ -2,9 +2,10 @@
 svg {
   background: #53c0c0;
   display: block;
-  width: 20vw;
-  height: 20vw;
-  margin: 0 auto;
+  width: 20%;
+  height: 20%;
+  padding: 1vw;
+  margin: 1vh 0;
 }
 
 line {
@@ -20,4 +21,17 @@ text {
   font-weight: 300;
   font-size: var(--svg-font-size);
   fill: white;
+}
+
+@media (max-width: 1024px) {
+  svg {
+    width: 33%;
+  }
+}
+
+/* Media Query für Smartphones */
+@media (max-width: 700px) {
+  svg {
+    width: 100%;
+  }
 }

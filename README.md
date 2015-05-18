@@ -51,11 +51,10 @@ Die App ist dann unter `http://localhost:3000/` zu erreichen.
 
 ##Libraries/Frameworks
 
-* [ampersand-view](http://ampersandjs.com/docs#ampersand-view)
-* [browserify](http://browserify.org)
-* [cssnext](https://cssnext.github.io)
 * [d3.js](http://d3js.org)
 * [papaparse](http://papaparse.com)
+* [browserify](http://browserify.org)
+* [cssnext](https://cssnext.github.io)
 * Weitere, siehe package.json
 
 Weitere findet ihr auf [npmjs.com](https://npmjs.com).
