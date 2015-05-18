@@ -5,7 +5,7 @@
 
 **Interaktive Informationsvisualisierung**
 
-**Professur für Web- und Multimedia-Technologie**
+**Professur für Multimedia-Technologie**
 
 **TU Dresden**
 
