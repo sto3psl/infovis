@@ -24,7 +24,7 @@ var parseCSV = function (file, data, callback) {
   })
 }
 
-parseCSV('./data/routes.csv', data, function () {
+parseCSV('./data/routes.txt', data, function () {
   // Code wird erst ausgeführt wenn die DOM geladen wurde
   domready(function () {
     var self = this
