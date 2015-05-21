@@ -10,19 +10,22 @@ domready(function () {
   //   .attr('height', 100)
   //   .attr('viewBox', '0 0 100 100')
 
-  for (var i = 0; i < 5; i++) {
-    createStarplot([1, 2, 3, 4]).append('circle')
-      .attr('cx', 50)
-      .attr('cy', 50)
-      .attr('r', 50)
-  }
+  var starplot = createStarplot([1, 2, 3, 4, 5])
+  var starplot2 = createStarplot([1, 2, 3, 4, 5, 6])
 
-  Papa.parse('./data/routes.txt', {
+  Papa.parse('./data/agency.txt', {
     download: true,
     header: true,
+    step: function (results, parser) {
+      console.log(results.data[0])
+      if (results.data[0].agency_id === '0NV___' ||
+        results.data[0].agency_id === 'VBB') {
+        d3.select('.data').append('p')
+          .html(results.data[0].agency_name)
+      }
+    },
     complete: function (results) {
-      console.log(results)
-      return results
+      console.log('complete')
     }
   })
 

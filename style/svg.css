@@ -1,6 +1,6 @@
 /* Hier kommen alle Styles rein die sich auf SVG beziehen */
 svg {
-  background: #53c0c0;
+  background: #fff;
   display: block;
   width: 20%;
   height: 20%;
@@ -10,6 +10,7 @@ svg {
 
 line {
   stroke: grey;
+  transform-origin: 100% 100%;
 }
 
 circle {
