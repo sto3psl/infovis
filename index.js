@@ -11,7 +11,10 @@ domready(function () {
   //   .attr('viewBox', '0 0 100 100')
 
   var starplot = createStarplot([1, 2, 3, 4, 5])
-  var starplot2 = createStarplot([1, 2, 3, 4, 5, 6])
+
+  d3.select('svg').append('path')
+    .style('stroke-width', 3)
+    .attr('d', 'M50 25 L75 50 L50 75 Z')
 
   Papa.parse('./data/agency.txt', {
     download: true,

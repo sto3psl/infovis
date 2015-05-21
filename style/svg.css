@@ -13,6 +13,12 @@ line {
   transform-origin: 100% 100%;
 }
 
+path {
+  stroke: #000;
+  fill: #333;
+  opacity: 0.5;
+}
+
 circle {
   fill: white;
 }

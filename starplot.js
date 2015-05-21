@@ -4,7 +4,7 @@ var Starplot = function (data) {
   var svg = d3.select('main').append('svg').attr('viewBox', '0 0 100 100')
   console.log(data)
 
-  return svg.selectAll('line')
+  svg.selectAll('line')
     .data(data)
     .enter().append('line')
     .attr('x1', 50)
@@ -20,6 +20,8 @@ var Starplot = function (data) {
       return 'line-' + data.indexOf(d)
     })
     .attr('stroke-width', '1px')
+
+  return true
 }
 
 module.exports = Starplot
