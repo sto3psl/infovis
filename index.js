@@ -10,17 +10,17 @@ domready(function () {
   //   .attr('height', 100)
   //   .attr('viewBox', '0 0 100 100')
 
-  var starplot = createStarplot([1, 2, 3, 4, 5])
+  var starplot = createStarplot([10, 20, 30, 40, 50])
 
-  d3.select('svg').append('path')
-    .style('stroke-width', 3)
-    .attr('d', 'M50 25 L75 50 L50 75 Z')
+  // d3.select('svg').append('path')
+  //   .style('stroke-width', 3)
+  //   .attr('d', 'M50 25 L75 50 L50 75 Z')
 
   Papa.parse('./data/agency.txt', {
     download: true,
     header: true,
     step: function (results, parser) {
-      console.log(results.data[0])
+      // console.log(results.data[0])
       if (results.data[0].agency_id === '0NV___' ||
         results.data[0].agency_id === 'VBB') {
         d3.select('.data').append('p')
