@@ -1,19 +1,27 @@
 /* Hier kommen alle Styles rein die sich auf SVG beziehen */
 svg {
-  background: #53c0c0;
+  background: #eee;
   display: block;
-  width: 20%;
-  height: 20%;
+  width: 40%;
+  height: 40%;
   padding: 1vw;
   margin: 1vh 0;
 }
 
 line {
   stroke: grey;
+  transform-origin: 0% 0%;
+}
+
+path {
+  stroke: #000;
+  stroke-width: 0.5px;
+  fill: green;
+  opacity: 0.5;
 }
 
 circle {
-  fill: white;
+  fill: green;
 }
 
 text {
