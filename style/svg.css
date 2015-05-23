@@ -15,6 +15,7 @@ line {
 
 path {
   stroke: #000;
+  stroke-width: 0.5px;
   fill: green;
   opacity: 0.5;
 }

@@ -5,7 +5,7 @@ var Starplot = function (data) {
   var svgContainer = d3.select('main').append('svg').attr('viewBox', '0 0 100 100')
   // console.log(data)
 
-  var axis = svgContainer.selectAll('line')
+  svgContainer.selectAll('line')
     .data(data)
     .enter().append('line')
     .attr('x1', 50)
@@ -31,9 +31,9 @@ var Starplot = function (data) {
   var dataConvert = function () {
     var results = []
     for (var i = 0; i < data.length; i++) {
-      var coords = new Victor(0, data[i]).rotateByDeg(90 + 360 / data.length * i)
-      console.log(coords.angleDeg())
+      var coords = new Victor(0, -20).rotateByDeg(90 + (360 / data.length) * i)
       results[i] = origin.add(coords).toObject()
+      console.log(results[i])
     }
     console.log(results)
     return results
@@ -41,15 +41,15 @@ var Starplot = function (data) {
 
   var lineData = dataConvert()
 
-// This is the accessor function we talked about above
+  // This is the accessor function we talked about above
   var lineFunction = d3.svg.line()
-                         .x(function (d) {
-                            return d.x
-                          })
-                         .y(function (d) { return d.y })
-                         .interpolate('linear')
+    .x(function (d) {
+      return d.x
+    })
+    .y(function (d) { return d.y })
+    .interpolate('linear')
 
-// The line SVG Path we draw
+  // The line SVG Path we draw
   svgContainer.append('path')
     .attr('d', lineFunction(lineData) + 'Z')
 
