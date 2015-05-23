@@ -1,7 +1,7 @@
 [![Dependency Status](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot.svg)](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot)
 [![devDependency Status](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot/dev-status.svg)](https://david-dm.org/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot#info=devDependencies)
 
-#InfoVis VBB-Fahrplandaten Starplot
+# InfoVis VBB-Fahrplandaten Starplot
 
 **Interaktive Informationsvisualisierung**
 
@@ -9,7 +9,7 @@
 
 **TU Dresden**
 
-##Installation
+## Installation
 Ladet euch [node.js](http://nodejs.org) herunter und installiert es.
 Dann habt ihr auf der Kommandozeile das `node` Kommando.
 
@@ -33,7 +33,7 @@ installieren und den development server starten.
 Dazu führt ihr folgende Befehle aus:
 
 ```bash
-git clone https://github.com/sto3psl/InfoVis-VBB-Fahrplandaten-Starplot.git
+git clone git@git.imld.de:infovis/infovis-15-starplot.git
 npm install
 npm start
 ```
@@ -49,7 +49,7 @@ Dieser Ordner steht auch in der `.gitignore`, damit ihr nicht ausversehen 400mb 
 
 Die App ist dann unter `http://localhost:3000/` zu erreichen.
 
-##Libraries/Frameworks
+## Libraries/Frameworks
 
 * [d3.js](http://d3js.org)
 * [papaparse](http://papaparse.com)
@@ -64,7 +64,7 @@ Diese müsst ihr mit `npm install --save paket-name` installieren. Dabei wird au
 __Hinweis:__ Fügt jemand in einem commit eine neue Abhängigkeit hinzu, müssen die anderen nach dem nächsten `git pull` wieder `npm install` durchführen.
 
 
-##Nützliche Plugins
+## Nützliche Plugins
 
 Dieser Befehl installiert [Javascript Standard Style](https://github.com/feross/standard). 
 
@@ -74,14 +74,14 @@ npm install standard -g
 
 Dieses kleine Tool überprüft unsere .js-Dateien ob sie den Javascript Style Regeln entsprechen. Das sorgt für bessere Übersichtlichkeit im Code und Konsistenz.
 
-###Sublime Text
+### Sublime Text
 
 * [Package Control](https://packagecontrol.io) (Paketmanager für Sublime Plugins)
 * [Jade](https://packagecontrol.io/packages/Jade) (Syntaxhighlighting für .jade-Dateien)
 * [SublimeLinter](https://packagecontrol.io/packages/SublimeLinter) (Code linting)
 * [SublimeLinter-contrib-standard](https://packagecontrol.io/packages/SublimeLinter-contrib-standard) (Überprüft Code Style der in Sublime Text geöffneten .js-Dateien)
 
-###Atom
+### Atom
 
 * [Jade](https://atom.io/packages/atom-jade) (Syntaxhighlighting für .jade-Dateien)
 * [Linter](https://atom.io/packages/linter) (Code linting)
@@ -89,7 +89,7 @@ Dieses kleine Tool überprüft unsere .js-Dateien ob sie den Javascript Style Re
 
 Falls jemand andere Code-Editoren nutzt schaut bitte selbst nach ob es entsprechende Plugins gibt.
 
-##Git Workflow
+## Git Workflow
 
 Als erstes solltet ihr schauen, dass ihr `git` [installiert](http://git-scm.com/downloads) habt und es anständig [konfiguriert](https://help.github.com/articles/set-up-git/) ist. Falls git euch regelmäßig nach eurem Github Passwort fragt, ist es hilfreich es im [Schlüsselbund zu speichern](https://help.github.com/articles/caching-your-github-password-in-git/).
 
@@ -111,9 +111,8 @@ $ git push origin mein-cooles-feature
 ```
 
 [Cheatsheet](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf)
-[Github Emojis](http://www.emoji-cheat-sheet.com/) 
 
-##Contributors
+## Contributors
 
 * Lara Paeske
 * Olga Davydkina
