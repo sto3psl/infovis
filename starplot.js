@@ -1,33 +1,32 @@
 var d3 = require('d3')
 var Victor = require('victor')
 
-var Starplot = function (data) {
+var i = 0
+
+var Starplot = function (data, showAxes) {
+  // Erstellen des SVG-Element in dem der Starplot gezeichnet wird
   var svgContainer = d3.select('main').append('svg').attr('viewBox', '-50 -50 100 100')
-  // console.log(data)
 
-  svgContainer.selectAll('line')
-    .data(data)
-    .enter().append('line')
-    .attr('x1', 0)
-    .attr('y1', 0)
-    .attr('x2', 50)
-    .attr('y2', 0)
-    .style('transform', function (d) {
-      var deg = -90 + (360 / (data.length)) * data.indexOf(d)
-      // console.log(deg)
-      return ('rotate(' + deg + 'deg)')
-    })
-    .attr('class', function (d) {
-      return 'line-' + data.indexOf(d)
-    })
-    .attr('stroke-width', '1px')
+  // Abfrage ob die Achsen eines Starplot angezeigt werden sollen
+  if (showAxes) {
+    svgContainer.selectAll('line')
+      .data(data)
+      .enter().append('line')
+      .attr('x1', 0)
+      .attr('y1', 0)
+      .attr('x2', 50)
+      .attr('y2', 0)
+      .style('transform', function (d) {
+        var deg = -90 + (360 / (data.length)) * i
+        i++
+        return ('rotate(' + deg + 'deg)')
+      })
+      .attr('class', function (d) {
+        return 'line-' + data.indexOf(d)
+      })
+  }
 
-  var origin = new Victor(50, 50)
-  // var coords = new Victor(0, -10).rotateByDeg(90 + (360 / 5 * 4))
-  // console.log(coords.toObject())
-  // var point = origin.add(coords)
-  // console.log(coords.angleDeg())
-
+  // Berechnet die Lage der Punkte für den Pfad
   var dataConvert = function () {
     var results = []
     for (var i = 0; i < data.length; i++) {
@@ -35,13 +34,12 @@ var Starplot = function (data) {
       results[i] = coords.toObject()
       console.log(results[i])
     }
-    console.log(results)
     return results
   }
 
+  // Zeichnen des Pfades
   var lineData = dataConvert()
 
-  // This is the accessor function we talked about above
   var lineFunction = d3.svg.line()
     .x(function (d) {
       return d.x
@@ -49,7 +47,6 @@ var Starplot = function (data) {
     .y(function (d) { return d.y })
     .interpolate('linear')
 
-  // The line SVG Path we draw
   svgContainer.append('path')
     .attr('d', lineFunction(lineData) + 'Z')
 
