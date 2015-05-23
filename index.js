@@ -5,22 +5,14 @@ var domready = require('domready')
 var createStarplot = require('./starplot')
 
 domready(function () {
-  // var createSvg = d3.select('main').append('svg')
-  //   .attr('width', 100)
-  //   .attr('height', 100)
-  //   .attr('viewBox', '0 0 100 100')
-
-  var starplot = createStarplot([30, 20, 40, 15, 10])
-
-  // d3.select('svg').append('path')
-  //   .style('stroke-width', 3)
-  //   .attr('d', 'M50 25 L75 50 L50 75 Z')
+  createStarplot([30, 20, 40, 20, 10], true)
+  createStarplot([30, 20, 30, 20, 10])
+  createStarplot([30, 20, 40, 20, 10, 5, 26, 40, 5], true)
 
   Papa.parse('./data/agency.txt', {
     download: true,
     header: true,
     step: function (results, parser) {
-      // console.log(results.data[0])
       if (results.data[0].agency_id === '0NV___' ||
         results.data[0].agency_id === 'VBB') {
         d3.select('.data').append('p')
@@ -31,6 +23,4 @@ domready(function () {
       console.log('complete')
     }
   })
-
-  console.log('hello world')
 })
