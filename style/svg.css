@@ -1,6 +1,6 @@
 /* Hier kommen alle Styles rein die sich auf SVG beziehen */
 svg {
-  background: #fff;
+  background: #eee;
   display: block;
   width: 40%;
   height: 40%;
@@ -10,7 +10,7 @@ svg {
 
 line {
   stroke: grey;
-  transform-origin: 100% 100%;
+  transform-origin: 0% 0%;
 }
 
 path {

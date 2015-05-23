@@ -10,7 +10,7 @@ domready(function () {
   //   .attr('height', 100)
   //   .attr('viewBox', '0 0 100 100')
 
-  var starplot = createStarplot([10, 20, 30, 40, 50])
+  var starplot = createStarplot([30, 20, 40, 15, 10])
 
   // d3.select('svg').append('path')
   //   .style('stroke-width', 3)

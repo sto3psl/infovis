@@ -2,18 +2,18 @@ var d3 = require('d3')
 var Victor = require('victor')
 
 var Starplot = function (data) {
-  var svgContainer = d3.select('main').append('svg').attr('viewBox', '0 0 100 100')
+  var svgContainer = d3.select('main').append('svg').attr('viewBox', '-50 -50 100 100')
   // console.log(data)
 
   svgContainer.selectAll('line')
     .data(data)
     .enter().append('line')
-    .attr('x1', 50)
-    .attr('y1', 50)
+    .attr('x1', 0)
+    .attr('y1', 0)
     .attr('x2', 50)
     .attr('y2', 0)
     .style('transform', function (d) {
-      var deg = (360 / (data.length)) * data.indexOf(d)
+      var deg = -90 + (360 / (data.length)) * data.indexOf(d)
       // console.log(deg)
       return ('rotate(' + deg + 'deg)')
     })
@@ -31,8 +31,8 @@ var Starplot = function (data) {
   var dataConvert = function () {
     var results = []
     for (var i = 0; i < data.length; i++) {
-      var coords = new Victor(0, -20).rotateByDeg(90 + (360 / data.length) * i)
-      results[i] = origin.add(coords).toObject()
+      var coords = new Victor(0, data[i]).rotateByDeg(90 + (360 / data.length) * i)
+      results[i] = coords.toObject()
       console.log(results[i])
     }
     console.log(results)
