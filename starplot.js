@@ -16,11 +16,16 @@ var Starplot = function (data, showAxes) {
       .attr('y1', 0)
       .attr('x2', 50)
       .attr('y2', 0)
-      .style('transform', function (d) {
+      .attr('transform', function (d) {
         var deg = -90 + (360 / (data.length)) * i
         i++
-        return ('rotate(' + deg + 'deg)')
+        return ('rotate(' + deg + ')')
       })
+      // .attr('-webkit-transform', function (d) {
+      //   var deg = -90 + (360 / (data.length)) * i
+      //   i++
+      //   return ('rotate(' + deg + 'deg)')
+      // })
       .attr('class', function (d) {
         return 'line-' + data.indexOf(d)
       })
