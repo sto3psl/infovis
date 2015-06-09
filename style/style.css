@@ -45,13 +45,14 @@ main div:first-child {
   font-size: 1.5em;
   width: 35vw;
   height: 35vw;
+  padding-left: 1vw;
 }
 
 .plot {
   position: relative;
   width: 17.5vw;
   height: 17.5vw;
-  padding: 1vw;
+  padding: 0 1vw 1vw 0;
 }
 
 .plot p {
@@ -81,8 +82,30 @@ main div:first-child {
   }
 }
 
-@media (max-width: 768px) {
-  main {
+@media (max-width: 760px) {
+  header {
+    position: relative;
+    height: 5.5em;
+  }
 
+  h1 {
+    font-size: 1.5em;
+  }
+
+  main {
+    margin-top: 1vh;
+    height: 100%;
+    flex-direction: row;
+  }
+
+  main div:first-child {
+    width: 100vw;
+    height: 100vw;
+  }
+
+  .plot {
+    width: 50vw;
+    height: 50vw;
+    padding: 1vw;
   }
 }
