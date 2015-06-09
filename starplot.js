@@ -3,14 +3,14 @@ var Victor = require('victor')
 
 var i = 0
 
-var Starplot = function (headline, data, showAxes, main) {
+var Starplot = function (headline, data, showAxes, big) {
   // Erstellen des SVG-Element in dem der Starplot gezeichnet wird
   var svgContainer = d3.select('main').append('div')
     .html('<p>' + headline + '</p>')
     .attr('class', 'plot')
-    .classed({'main': main})
+    .classed({'main': big})
     .append('svg')
-    .attr('viewBox', '-60 -60 120 120')
+    .attr('viewBox', '-50 -55 100 100')
 
   // Abfrage ob die Achsen eines Starplot angezeigt werden sollen
   if (showAxes) {
@@ -51,18 +51,18 @@ var Starplot = function (headline, data, showAxes, main) {
   console.log(lineData)
 
   // Werte an die Achsen schreiben
-  svgContainer.selectAll('text')
-    .data(lineData)
-    .enter().append('text')
-    .attr('x', function (d) {
-      return d.x
-    })
-    .attr('y', function (d) {
-      return d.y
-    })
-    .text(function (d) {
-      return Math.abs(d3.round(d.y, 0))
-    })
+  // svgContainer.selectAll('text')
+  //   .data(lineData)
+  //   .enter().append('text')
+  //   .attr('x', function (d) {
+  //     return d.x
+  //   })
+  //   .attr('y', function (d) {
+  //     return d.y
+  //   })
+  //   .text(function (d) {
+  //     return Math.abs(d3.round(d.y, 0))
+  //   })
 
   // Zeichnen des Pfades
   var lineFunction = d3.svg.line()

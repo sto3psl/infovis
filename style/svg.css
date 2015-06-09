@@ -1,11 +1,13 @@
 /* Hier kommen alle Styles rein die sich auf SVG beziehen */
 svg {
-  background: #ccc;
+  background: radial-gradient(#fff, #ddd);
+  border-radius: 2px;
   display: block;
   width: 100%;
   height: 100%;
   padding: 1vw;
   font-size: var(--svg-font-size);
+  box-shadow: 2px 2px 4px #AAAAAA99;
 /*  margin: 1vh 0;
 */}
 
@@ -19,15 +21,14 @@ line {
 }
 
 path {
-  stroke: blue;
+  stroke: var(--blue);
   stroke-width: 0.5px;
-  fill: lightblue;
-  opacity: 0.5;
+  fill: var(--blue);
+  opacity: 0.6;
 }
 
 text {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-  font-weight: 300;
   fill: var(--font-color);
 }
 
