@@ -7,34 +7,64 @@
 }
 
 html {
+  background: #fff;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,.004);
   color: var(--font-color);
 }
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 90vw;
-  margin: 0 auto;
+header {
+  width: 100vw;
+  background: #fff;
+  top: 0;
+  position: fixed;
+  padding: .8em 0 0 1em;
+  height: 4em;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 2px 2px 4px #AAAAAA99;
+  z-index: 10;
 }
 
 h1 {
-  text-align: center;
+  font-weight: lighter;
+  margin: 0;
 }
 
-h2 {
-  text-align: center;
+main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+/*  justify-content: flex-end;
+*/  width: 70vw;
+  height: 50vw;
+  margin: 0 auto;
+  margin-top: 6em;
+}
+
+main div:first-child {
+  width: 50%;
+}
+
+.plot {
+  position: relative;
+  width: 25%;
+}
+
+.plot p {
+  margin: 0;
+  width: 90%;
+  position: absolute;
 }
 
 @media (max-width: 1024px) {
   main {
-  display: flex;
+    width: 100vw;
+    height: 70vw;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   main {
+
   }
 }

@@ -5,9 +5,11 @@ var domready = require('domready')
 var createStarplot = require('./starplot')
 
 domready(function () {
-  createStarplot([30, 20, 40, 20, 10], true)
-  createStarplot([30, 20, 30, 20, 10])
-  createStarplot([30, 20, 40, 20, 10, 5, 26, 40, 5], true)
+  createStarplot('Berlin Hbf.', [30, 20, 40, 20, 10], true, true)
+  createStarplot('Potsdamer Platz', [30, 20, 30, 20, 10], true)
+  createStarplot('Dresden Hbf.', [30, 20, 40, 20, 10, 5, 26, 40, 5], true)
+  createStarplot('Dresden Neustadt', [45, 20, 23, 20, 5], true)
+  createStarplot('Moskau', [12, 2, 45, 20, 43], true)
 
   Papa.parse('./data/agency.txt', {
     download: true,
