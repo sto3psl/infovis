@@ -2,7 +2,7 @@
 // var Papa = require('papaparse')
 var domready = require('domready')
 
-var Starplot = require('./starplot-new.js')
+var Starplot = require('./starplot.js')
 
 domready(function () {
   new Starplot('main')
