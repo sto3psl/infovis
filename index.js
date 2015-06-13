@@ -7,7 +7,19 @@ var Starplot = require('./starplot.js')
 domready(function () {
   new Starplot('main')
     .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scale: true})
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes()
 
 // Papa.parse('./data/agency.txt', {
 //   download: true,

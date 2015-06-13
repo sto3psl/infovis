@@ -16,11 +16,6 @@ function Starplot (parent) {
   return Starplot
 }
 
-Starplot.test = function () {
-  console.log('test')
-  return Starplot
-}
-
 // Draw Axes according to number of data elements
 Starplot.drawAxes = function (settings) {
   svgContainer.append('g').attr('class', 'axes').selectAll('line')
@@ -39,8 +34,10 @@ Starplot.drawAxes = function (settings) {
       return 'line-' + data.indexOf(d)
     })
 
-  if (settings.scale) {
-    addAxisScale()
+  if (typeof settings !== 'undefined') {
+    if (settings.scaleAccuracy) {
+      addAxisScale(settings.scaleAccuracy)
+    }
   }
 
   return Starplot
@@ -92,18 +89,19 @@ Starplot.removeDataSet = function (dataSet) {
   return Starplot
 }
 
-var addAxisScale = function () {
+// Draw Scale on every axis
+var addAxisScale = function (accuracy) {
   for (var j = 0; j < data.length; j++) {
-    var group = d3.select('g').append('g')
+    var group = svgContainer.select('g').append('g')
       .attr('class', 'scale-' + j)
       .attr('transform', function () {
         return 'rotate(' + (360 / data.length) * j + ')'
       })
 
-    for (var i = 1; i < 10; i++) {
+    for (var i = 1; i < accuracy; i++) {
       group.append('circle')
         .attr('cx', 0)
-        .attr('cy', -i * 5)
+        .attr('cy', -i * 50 / accuracy)
         .attr('r', 0.75)
     }
   }
