@@ -22,8 +22,8 @@ Starplot.test = function () {
 }
 
 // Draw Axes according to number of data elements
-Starplot.drawAxes = function () {
-  svgContainer.selectAll('line')
+Starplot.drawAxes = function (settings) {
+  svgContainer.append('g').attr('class', 'axes').selectAll('line')
     .data(data)
     .enter().append('line')
     .attr('x1', 0)
@@ -38,6 +38,10 @@ Starplot.drawAxes = function () {
     .attr('class', function (d) {
       return 'line-' + data.indexOf(d)
     })
+
+  if (settings.scale) {
+    addAxisScale()
+  }
 
   return Starplot
 }
@@ -86,6 +90,23 @@ Starplot.removeDataSet = function (dataSet) {
   d3.select(dataSet).remove()
 
   return Starplot
+}
+
+var addAxisScale = function () {
+  for (var j = 0; j < data.length; j++) {
+    var group = d3.select('g').append('g')
+      .attr('class', 'scale-' + j)
+      .attr('transform', function () {
+        return 'rotate(' + (360 / data.length) * j + ')'
+      })
+
+    for (var i = 1; i < 10; i++) {
+      group.append('circle')
+        .attr('cx', 0)
+        .attr('cy', -i * 5)
+        .attr('r', 0.75)
+    }
+  }
 }
 
 module.exports = Starplot

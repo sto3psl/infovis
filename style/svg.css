@@ -19,6 +19,10 @@ line {
   stroke-width: .5px;
 }
 
+circle {
+  fill: grey;
+}
+
 path {
   stroke: var(--blue);
   stroke-width: .5px;
