@@ -16,13 +16,13 @@ svg {
 
 line {
   stroke: grey;
-  stroke-width: 0.5px;
+  stroke-width: .5px;
 }
 
 path {
   stroke: var(--blue);
-  stroke-width: 0.5px;
-  fill: var(--blue);
+  stroke-width: 1px;
+  fill: transparent;
   opacity: 0.6;
 }
 
