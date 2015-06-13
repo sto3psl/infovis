@@ -14,7 +14,7 @@ Probiert ob es funktioniert:
 
 ```bash
 node --version
-v0.12.2
+v0.12.4
 ```
 
 Danach solltet ihr [npm](http://npmjs.org) auf den aktuellsten Stand bringen:
