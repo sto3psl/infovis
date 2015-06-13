@@ -7,11 +7,9 @@ var Starplot = require('./starplot-new.js')
 
 domready(function () {
   createStarplot('Berlin Hbf.', [30, 20, 40, 20, 10], true, true)
-  var a = new Starplot('main')
+  var a = new Starplot('main').addDataSet([30, 20, 40, 20, 10]).drawAxes()
 
-  a.test()
-  a.addDataSet([30, 20, 40, 20, 10]).drawAxes()
-
+  console.log(a)
 // Papa.parse('./data/agency.txt', {
 //   download: true,
 //   header: true,

@@ -4,6 +4,7 @@ var svgContainer = null
 var data = []
 
 var i = 0
+var dataSetCount = 0
 
 // Constructor - Draws empty SVG element
 function Starplot (parent) {
@@ -41,9 +42,10 @@ Starplot.drawAxes = function () {
   return Starplot
 }
 
-// Add Datasets to Starplot
+// Add Datasets to Starplot, takes array as argument
 Starplot.addDataSet = function (d) {
   data = d
+  dataSetCount++
   console.log(data)
 
   var dataConvert = function () {
@@ -73,7 +75,15 @@ Starplot.addDataSet = function (d) {
     .interpolate('linear')
 
   svgContainer.append('path')
+    .attr('class', 'data-set-' + dataSetCount)
     .attr('d', lineFunction(lineData) + 'Z')
+
+  return Starplot
+}
+
+// Remove DataSet from Starplot, takes the class-name as argument
+Starplot.removeDataSet = function (dataSet) {
+  d3.select(dataSet).remove()
 
   return Starplot
 }

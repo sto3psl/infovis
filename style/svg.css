@@ -21,7 +21,7 @@ line {
 
 path {
   stroke: var(--blue);
-  stroke-width: 1px;
+  stroke-width: .5px;
   fill: transparent;
   opacity: 0.6;
 }
