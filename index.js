@@ -2,11 +2,9 @@
 // var Papa = require('papaparse')
 var domready = require('domready')
 
-var createStarplot = require('./starplot')
 var Starplot = require('./starplot-new.js')
 
 domready(function () {
-  createStarplot('Berlin Hbf.', [30, 20, 40, 20, 10], true, true)
   new Starplot('main')
     .addDataSet([30, 20, 40, 20, 10])
     .drawAxes({scale: true})
