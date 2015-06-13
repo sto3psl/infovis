@@ -1,48 +1,64 @@
 var d3 = require('d3')
-var Victor = require('victor')
+
+var svgContainer = null
+var data = []
 
 var i = 0
+var dataSetCount = 0
 
-var Starplot = function (headline, data, showAxes, big) {
-  // Erstellen des SVG-Element in dem der Starplot gezeichnet wird
-  var svgContainer = d3.select('main').append('div')
-    .html('<p>' + headline + '</p>')
+// Constructor - Draws empty SVG element
+function Starplot (parent) {
+  svgContainer = d3.select(parent).append('div')
     .attr('class', 'plot')
-    .classed({'main': big})
     .append('svg')
     .attr('viewBox', '-50 -55 100 100')
 
-  // Abfrage ob die Achsen eines Starplot angezeigt werden sollen
-  if (showAxes) {
-    svgContainer.selectAll('line')
-      .data(data)
-      .enter().append('line')
-      .attr('x1', 0)
-      .attr('y1', 0)
-      .attr('x2', 50)
-      .attr('y2', 0)
-      .attr('transform', function (d) {
-        var deg = -90 + (360 / (data.length)) * i
-        i++
-        return ('rotate(' + deg + ')')
-      })
-      // .attr('-webkit-transform', function (d) {
-      //   var deg = -90 + (360 / (data.length)) * i
-      //   i++
-      //   return ('rotate(' + deg + 'deg)')
-      // })
-      .attr('class', function (d) {
-        return 'line-' + data.indexOf(d)
-      })
+  return Starplot
+}
+
+// Draw Axes according to number of data elements
+Starplot.drawAxes = function (settings) {
+  svgContainer.append('g').attr('class', 'axes').selectAll('line')
+    .data(data)
+    .enter().append('line')
+    .attr('x1', 0)
+    .attr('y1', 0)
+    .attr('x2', 50)
+    .attr('y2', 0)
+    .attr('transform', function (d) {
+      var deg = -90 + (360 / (data.length)) * i
+      i++
+      return ('rotate(' + deg + ')')
+    })
+    .attr('class', function (d) {
+      return 'line-' + data.indexOf(d)
+    })
+
+  if (typeof settings !== 'undefined') {
+    if (settings.scaleAccuracy) {
+      addAxisScale(settings.scaleAccuracy)
+    }
   }
 
-  // Berechnet die Lage der Punkte für den Pfad
+  return Starplot
+}
+
+// Add Datasets to Starplot, takes array as argument
+Starplot.addDataSet = function (d) {
+  data = d
+  dataSetCount++
+  console.log(data)
+
   var dataConvert = function () {
     var results = []
+
     for (var i = 0; i < data.length; i++) {
-      var coords = new Victor(0, data[i]).rotateByDeg(90 + (360 / data.length) * i)
-      results[i] = coords.toObject()
-    // console.log(results[i])
+      var coords = {}
+
+      coords.x = 0 - data[i] * Math.cos((90 + (360 / data.length) * i) / 180 * Math.PI)
+      coords.y = 0 - data[i] * Math.sin((90 + (360 / data.length) * i) / 180 * Math.PI)
+
+      results[i] = coords
     }
     return results
   }
@@ -50,21 +66,6 @@ var Starplot = function (headline, data, showAxes, big) {
   var lineData = dataConvert()
   console.log(lineData)
 
-  // Werte an die Achsen schreiben
-  // svgContainer.selectAll('text')
-  //   .data(lineData)
-  //   .enter().append('text')
-  //   .attr('x', function (d) {
-  //     return d.x
-  //   })
-  //   .attr('y', function (d) {
-  //     return d.y
-  //   })
-  //   .text(function (d) {
-  //     return Math.abs(d3.round(d.y, 0))
-  //   })
-
-  // Zeichnen des Pfades
   var lineFunction = d3.svg.line()
     .x(function (d) {
       return d.x
@@ -75,9 +76,35 @@ var Starplot = function (headline, data, showAxes, big) {
     .interpolate('linear')
 
   svgContainer.append('path')
+    .attr('class', 'data-set-' + dataSetCount)
     .attr('d', lineFunction(lineData) + 'Z')
 
-  return true
+  return Starplot
+}
+
+// Remove DataSet from Starplot, takes the class-name as argument
+Starplot.removeDataSet = function (dataSet) {
+  d3.select(dataSet).remove()
+
+  return Starplot
+}
+
+// Draw Scale on every axis
+var addAxisScale = function (accuracy) {
+  for (var j = 0; j < data.length; j++) {
+    var group = svgContainer.select('g').append('g')
+      .attr('class', 'scale-' + j)
+      .attr('transform', function () {
+        return 'rotate(' + (360 / data.length) * j + ')'
+      })
+
+    for (var i = 1; i < accuracy; i++) {
+      group.append('circle')
+        .attr('cx', 0)
+        .attr('cy', -i * 50 / accuracy)
+        .attr('r', 0.75)
+    }
+  }
 }
 
 module.exports = Starplot
