@@ -7,34 +7,105 @@
 }
 
 html {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  background: #fff;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0,0,0,.004);
   color: var(--font-color);
 }
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 90vw;
-  margin: 0 auto;
+header {
+  width: 100vw;
+  background: #fff;
+  top: 0;
+  position: fixed;
+  padding: .8em 0 0 1em;
+  height: 4em;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 2px 2px 4px #AAAAAA99;
+  z-index: 10;
 }
 
 h1 {
-  text-align: center;
+  font-weight: lighter;
+  margin: 0;
 }
 
-h2 {
-  text-align: center;
+main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 70vw;
+  height: 40vw;
+  margin: 0 auto;
+  margin-top: 6em;
 }
 
+main div:first-child {
+  font-size: 1.5em;
+  width: 35vw;
+  height: 35vw;
+  padding-left: 1vw;
+}
+
+.plot {
+  position: relative;
+  width: 17.5vw;
+  height: 17.5vw;
+  padding: 0 1vw 1vw 0;
+}
+
+.plot p {
+  margin:.5vw;
+  width: 90%;
+  position: absolute;
+}
+
+/* Media Query für Tablets*/
 @media (max-width: 1024px) {
   main {
-  display: flex;
+    width: 100vw;
+    height: 50vw;
+  }
+
+  main div:first-child {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .plot {
+    position: relative;
+    width: 25vw;
+    height: 25vw;
+  /*  border-bottom: 1px solid green;
+    border-right: 1px solid green;*/
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 760px) {
+  header {
+    position: relative;
+    height: 5.5em;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
   main {
+    margin-top: 1vh;
+    height: 100%;
+    flex-direction: row;
+  }
+
+  main div:first-child {
+    width: 100vw;
+    height: 100vw;
+  }
+
+  .plot {
+    width: 50vw;
+    height: 50vw;
+    padding: 1vw;
   }
 }

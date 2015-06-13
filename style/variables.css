@@ -2,5 +2,9 @@
 
 :root {
   --font-color: #444;
-  --svg-font-size: .65em;
+  --svg-font-size: .5em;
+  --blue: #39AADE;
+  --green: #78D15E;
+  --yellow: #F0E864;
+  --red: #DB4038;
 }
