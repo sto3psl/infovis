@@ -2,21 +2,14 @@ var domready = require('domready')
 
 var Starplot = require('./starplot')
 
-var addText = function (parent, text) {
-  var node = document.createElement('p')
-  var textnode = document.createTextNode(text)
-  node.appendChild(textnode)
-  document.querySelector(parent).appendChild(node)
-}
-
-var xhr = new XMLHttpRequest()
+var xhr = new window.XMLHttpRequest()
 
 xhr.onreadystatechange = function () {
   if (xhr.readyState === 4 && xhr.status === 200) {
     // here comes Code that executes after the data file is loaded
     var data = JSON.parse(xhr.responseText)
     console.log(data)
-    
+
     var select = document.querySelector('#stops')
 
     for (var i = 0; i < 20; i++) {
@@ -24,12 +17,6 @@ xhr.onreadystatechange = function () {
       opt.value = data.data[i].stop_name
       opt.innerHTML = data.data[i].stop_name
       select.appendChild(opt)
-    };
-
-    document.querySelector('button').onclick = function () {
-      console.log(data)
-      addText('.data', 'fuck off')
-
     }
   }
 }

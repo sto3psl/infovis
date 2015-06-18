@@ -1,6 +1,5 @@
 var Baby = require('babyparse')
 var fs = require('fs')
-var replace = require('replace')
 
 fs.readFile(process.argv[2], {'encoding': 'utf-8'}, function (err, data) {
   if (err) throw err
@@ -21,24 +20,8 @@ fs.readFile(process.argv[2], {'encoding': 'utf-8'}, function (err, data) {
     delete parsed.data[i].parent_station
   }
 
-  // console.log(JSON.stringify(parsed.data[0]))
-
   fs.writeFile(process.argv[3], JSON.stringify(parsed), function (err) {
     if (err) throw err
-    // replace({
-    //   regex: '"stop_code":"",',
-    //   replacement: '',
-    //   paths: ['./stops.json'],
-    //   recursive: true,
-    //   silent: true
-    // })
-    // replace({
-    //   regex: '"stop_code",',
-    //   replacement: '',
-    //   paths: ['./stops.json'],
-    //   recursive: true,
-    //   silent: true
-    // })
     console.log(JSON.stringify(parsed.data[0]) + '\n' + JSON.stringify(parsed.data[10]))
     console.log('Baby parsed!')
   })
