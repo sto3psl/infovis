@@ -16,15 +16,25 @@ xhr.onreadystatechange = function () {
     // here comes Code that executes after the data file is loaded
     var data = JSON.parse(xhr.responseText)
     console.log(data)
+    
+    var select = document.querySelector('#stops')
+
+    for (var i = 0; i < 20; i++) {
+      var opt = document.createElement('option')
+      opt.value = data.data[i].stop_name
+      opt.innerHTML = data.data[i].stop_name
+      select.appendChild(opt)
+    };
 
     document.querySelector('button').onclick = function () {
       console.log(data)
       addText('.data', 'fuck off')
+
     }
   }
 }
 
-xhr.open('GET', './data/agency.json', true)
+xhr.open('GET', './data/stops.json', true)
 xhr.send()
 
 domready(function () {
