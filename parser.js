@@ -17,7 +17,7 @@ fs.readFile(process.argv[2], {'encoding': 'utf-8'}, function (err, data) {
 
       delete result.agency_id
 
-      result.trip = {}
+      result.trip = []
       parsedData.push(result)
     // console.log(parsedData)
     },
