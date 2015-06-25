@@ -12,7 +12,8 @@ fs.readFile(process.argv[2], {'encoding': 'utf-8'}, function (err, data) {
     header: true,
     step: function (results, parser) {
       var result = results.data[0]
-      result.route = []
+      // result.route = []
+      // result.trips = 0
       console.log(JSON.stringify(result) + ',')
 
       // fs.appendFile(process.argv[3], result, {'encoding': 'utf-8'}, function (err) {
