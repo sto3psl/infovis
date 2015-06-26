@@ -1,8 +1,7 @@
 var Baby = require('babyparse')
 var fs = require('fs')
 
-var parsedData = []
-
+// Einlesen der CSV-Datei welche in JSON konvertiert werden soll
 fs.readFile(process.argv[2], {'encoding': 'utf-8'}, function (err, data) {
   if (err) throw err
 
@@ -15,14 +14,7 @@ fs.readFile(process.argv[2], {'encoding': 'utf-8'}, function (err, data) {
       // result.route = []
       // result.trips = 0
       console.log(JSON.stringify(result) + ',')
-
-      // fs.appendFile(process.argv[3], result, {'encoding': 'utf-8'}, function (err) {
-      //   if (err) throw err
-      //   console.log(result)
-      // })
-
     }
   })
-
   console.log('{}]')
 })
