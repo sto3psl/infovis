@@ -1,8 +1,11 @@
 var domready = require('domready')
 
 var Starplot = require('./starplot')
+var getJSON = require('./getJSON')
 
-var a
+getJSON('./data/agency.json', function (data) {
+  console.log(data)
+})
 
 var xhr = new window.XMLHttpRequest()
 
