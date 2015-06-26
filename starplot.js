@@ -18,7 +18,7 @@ function Starplot (parent) {
 
 // Draw Axes according to number of data elements
 Starplot.drawAxes = function (settings) {
-  svgContainer.append('g').attr('class', 'axes').selectAll('line')
+  svgContainer.insert('g', 'path').attr('class', 'axes').selectAll('line')
     .data(data)
     .enter().append('line')
     .attr('x1', 0)

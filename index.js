@@ -5,34 +5,47 @@ var getJSON = require('./getJSON')
 
 getJSON('./data/agency.json', function (data) {
   console.log(data)
-})
 
-var xhr = new window.XMLHttpRequest()
+  var select = document.querySelector('#agency')
 
-xhr.onreadystatechange = function () {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    // here comes Code that executes after the data file is loaded
-    var data = JSON.parse(xhr.responseText)
-    console.log(data[0])
+  for (var i = 0; i < data.length; i++) {
+    var opt = document.createElement('option')
+    opt.value = data[i].agency_name
+    opt.innerHTML = data[i].agency_name
+    select.appendChild(opt)
+  }
+
+  getJSON('./data/stops.json', function (data) {
+    console.log(data)
 
     var select = document.querySelector('#stops')
 
-    for (var i = 100; i < 120; i++) {
+    for (var i = 0; i < 20; i++) {
       var opt = document.createElement('option')
       opt.value = data[i].stop_name
       opt.innerHTML = data[i].stop_name + ' ' + data[i].route.length
       select.appendChild(opt)
     }
-  }
-}
 
-xhr.open('GET', './data/stops.json', true)
-xhr.send()
+    getJSON('./data/routes.json', function (data) {
+      var select = document.querySelector('#route')
+
+      for (var i = 0; i < 20; i++) {
+        var opt = document.createElement('option')
+        opt.value = data[i].route_short_name
+        opt.innerHTML = data[i].route_short_name
+        select.appendChild(opt)
+      }
+    })
+  })
+})
 
 domready(function () {
   // here comes Code which doesnt need the data
-  a = new Starplot('main')
+  new Starplot('main')
     .addDataSet([30, 20, 40, 20, 10])
+    .addDataSet([40, 10, 20, 20, 50])
+    .addDataSet([10, 50, 30, 40, 20])
     .drawAxes({scaleAccuracy: 10})
   new Starplot('main')
     .addDataSet([30, 20, 40, 20, 10])

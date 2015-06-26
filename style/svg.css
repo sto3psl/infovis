@@ -1,13 +1,13 @@
 /* Hier kommen alle Styles rein die sich auf SVG beziehen */
 svg {
-  background: radial-gradient(#fff, #ddd);
+  /*background: radial-gradient(#fff, #ddd);*/
   border-radius: 2px;
   display: block;
   width: 100%;
   height: 100%;
   padding: 1vw;
   font-size: var(--svg-font-size);
-  box-shadow: 0px 2px #aaa;
+  /*box-shadow: 0px 2px #aaa;*/
 }
 
 .main svg {
@@ -26,8 +26,22 @@ circle {
 path {
   stroke: var(--blue);
   stroke-width: .5px;
-  fill: transparent;
-  opacity: 0.6;
+  fill: color(var(--blue) a(50%));
+}
+
+.data-set-1 {
+  stroke: var(--blue);
+  fill: color(var(--blue) a(50%));
+}
+
+.data-set-2 {
+  stroke: var(--green);
+  fill: color(var(--green) a(50%));
+}
+
+.data-set-3 {
+  stroke: var(--red);
+  fill: color(var(--red) a(50%));
 }
 
 text {
