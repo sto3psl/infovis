@@ -33,7 +33,7 @@ getJSON('./data/agency.json', function (data) {
       for (var i = 0; i < 20; i++) {
         var opt = document.createElement('option')
         opt.value = data[i].route_short_name
-        opt.innerHTML = data[i].route_short_name
+        opt.innerHTML = 'Linie ' + data[i].route_short_name
         select.appendChild(opt)
       }
     })
@@ -43,8 +43,14 @@ getJSON('./data/agency.json', function (data) {
 domready(function () {
   // here comes Code which doesnt need the data
   new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
     .addDataSet([40, 10, 20, 20, 50])
+    .addDataSet([10, 50, 30, 40, 20])
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([40, 10, 20, 20, 50])
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
     .addDataSet([10, 50, 30, 40, 20])
     .drawAxes({scaleAccuracy: 10})
   new Starplot('main')
@@ -58,5 +64,14 @@ domready(function () {
     .drawAxes({scaleAccuracy: 10})
   new Starplot('main')
     .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes()
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes({scaleAccuracy: 10})
+  new Starplot('main')
+    .addDataSet([30, 20, 40, 20, 10])
+    .drawAxes({scaleAccuracy: 10})
 })

@@ -50,8 +50,8 @@ main div:first-child {
 
 .plot {
   position: relative;
-  width: 17.5vw;
-  height: 17.5vw;
+  width: calc(35 / 3vw);
+  height: calc(35 / 3vw);
   padding: 0 1vw 1vw 0;
 }
 
@@ -75,8 +75,8 @@ main div:first-child {
 
   .plot {
     position: relative;
-    width: 25vw;
-    height: 25vw;
+    width: calc(50 / 3vw);
+    height: calc(50 / 3vw);
   /*  border-bottom: 1px solid green;
     border-right: 1px solid green;*/
   }

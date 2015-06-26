@@ -24,22 +24,22 @@ circle {
 }
 
 path {
-  stroke: var(--blue);
+  stroke: gray(200, 50%);
   stroke-width: .5px;
-  fill: color(var(--blue) a(50%));
+  fill: gray(200, 50%);
 }
 
-.data-set-1 {
+.data-set-1, .data-set-4 {
   stroke: var(--blue);
   fill: color(var(--blue) a(50%));
 }
 
-.data-set-2 {
+.data-set-2, .data-set-5 {
   stroke: var(--green);
   fill: color(var(--green) a(50%));
 }
 
-.data-set-3 {
+.data-set-3, .data-set-6 {
   stroke: var(--red);
   fill: color(var(--red) a(50%));
 }
