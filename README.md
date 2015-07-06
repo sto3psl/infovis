@@ -6,6 +6,13 @@
 
 **TU Dresden**
 
+## SSH-Keys
+
+Um überhaupt das Repository klonen zu können bzw. später commits zu pushen, müsst ihr SSH-Keys für Gitlab generieren.
+Dazu einfach dieser [Anleitung](https://git.imld.de/help/ssh/README.md) folgen.
+
+Danach könnt ihr mit der Installation beginnen.
+
 ## Installation
 Ladet euch [node.js](http://nodejs.org) herunter und installiert es.
 Dann habt ihr auf der Kommandozeile das `node` Kommando.
