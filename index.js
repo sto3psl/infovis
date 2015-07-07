@@ -4,7 +4,7 @@ var Starplot = require('./starplot')
 var getJSON = require('./getJSON')
 
 getJSON('./data/agency.json', function (data) {
-  console.log(data)
+  // console.log(data)
 
   var select = document.querySelector('#agency')
 
@@ -16,7 +16,7 @@ getJSON('./data/agency.json', function (data) {
   }
 
   getJSON('./data/stops.json', function (data) {
-    console.log(data)
+    // console.log(data)
 
     var select = document.querySelector('#stops')
 
@@ -45,33 +45,6 @@ domready(function () {
   new Starplot('main')
     .addDataSet([40, 10, 20, 20, 50])
     .addDataSet([10, 50, 30, 40, 20])
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([40, 10, 20, 20, 50])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([10, 50, 30, 40, 20])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
     .addDataSet([30, 20, 40, 20, 10])
     .drawAxes({scaleAccuracy: 10})
 })
