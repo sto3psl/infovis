@@ -42,15 +42,20 @@ getJSON('./data/agency.json', function (data) {
 
 domready(function () {
   // here comes Code which doesnt need the data
-  var plot = new Starplot([10, 20, 30, 40, 50], 'main')
+  var plot = new Starplot([10, 20, 30, 40, 50], '.plot')
   plot.addDataSet([20, 20, 30, 40, 50])
 
   console.log(plot.data)
 
-  var plot2 = new Starplot([10, 20, 30, 40, 50], 'main')
-  var plot3 = new Starplot([10, 20, 30, 40, 50], 'main')
-  var plot4 = new Starplot([10, 20, 30, 40, 50], 'main')
-  var plot5 = new Starplot([10, 20, 30, 40, 50], 'main')
+  var plot2 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot3 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot4 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot5 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot6 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot7 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot8 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot9 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
+  var plot10 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
 
   // plot.removeDataSet(1)
   plot.addAxisScale()

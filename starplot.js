@@ -12,7 +12,7 @@ function Starplot (data, e) {
 
 Starplot.prototype.draw = function (e) {
   this.svgContainer = d3.select(e).append('div')
-    .attr('class', 'plot')
+    .attr('class', 'star-plot')
     .append('svg')
     .attr('viewBox', '-100 -110 200 200')
 

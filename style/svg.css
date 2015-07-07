@@ -33,6 +33,10 @@ path {
   fill: transparent;
 }
 
+.small-plots .data-set-1 {
+  fill: grey;
+}
+
 .data-set-1, .blue {
   stroke: var(--blue);
   fill: color(var(--blue) a(50%));
