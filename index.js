@@ -44,11 +44,11 @@ domready(function () {
   var clickControl = false
   document.querySelector('#help').addEventListener('click', function () {
     if (clickControl === false) {
-      document.querySelector('#welcomeDiv').style.display = 'block'
+      document.querySelector('#help-div').style.display = 'block'
       clickControl = true
     }
     else {
-      document.querySelector('#welcomeDiv').style.display = 'none'
+      document.querySelector('#help-div').style.display = 'none'
       clickControl = false
     }
 
