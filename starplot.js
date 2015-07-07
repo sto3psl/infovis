@@ -43,10 +43,28 @@ Starplot.prototype.drawAxes = function (data) {
 }
 
 Starplot.prototype.addAxisScale = function (accuracy) {
+  var data = this.data[1]
   console.log('add Axis Scale')
 
+  for (var i in data) {
+    var g = this.svgContainer.append('g')
+      .attr('class', 'scale-' + i)
+
+    for (var j = 0; j < 10; j++) {
+      g.append('circle')
+        .attr('cx', 0)
+        .attr('cy', -10 * j)
+        .attr('r', 0.75)
+    }
+
+    this.svgContainer.select('.scale-' + i)
+      .attr('transform', function () {
+        return 'rotate(' + (360 / data.length) * i + ')'
+      })
+  }
+
   // for (var j = 0; j < data.length; j++) {
-  //   var group = svgContainer.select('g').append('g')
+  //   var group = this.svgContainer.select('g').append('g')
   //     .attr('class', 'scale-' + j)
   //     .attr('transform', function () {
   //       return 'rotate(' + (360 / data.length) * j + ')'
