@@ -1,29 +1,34 @@
 var d3 = require('d3')
 
-var svgContainer = null
-var data = []
-
-var i = 0
 var dataSetCount = 0
 
-// Constructor - Draws empty SVG element
-function Starplot (parent) {
-  svgContainer = d3.select(parent).append('div')
+function Starplot (data, e) {
+  this.data = []
+  this.svgContainer = null
+
+  this.draw(e)
+  this.drawAxes(data)
+  this.addDataSet(data)
+}
+
+Starplot.prototype.draw = function (e) {
+  this.svgContainer = d3.select(e).append('div')
     .attr('class', 'plot')
     .append('svg')
-    .attr('viewBox', '-50 -55 100 100')
+    .attr('viewBox', '-100 -110 200 200')
 
   return Starplot
 }
 
-// Draw Axes according to number of data elements
-Starplot.drawAxes = function (settings) {
-  svgContainer.insert('g', 'path').attr('class', 'axes').selectAll('line')
+Starplot.prototype.drawAxes = function (data) {
+  var i = 0
+
+  this.svgContainer.insert('g', 'path').attr('class', 'axes').selectAll('line')
     .data(data)
     .enter().append('line')
     .attr('x1', 0)
     .attr('y1', 0)
-    .attr('x2', 50)
+    .attr('x2', 100)
     .attr('y2', 0)
     .attr('transform', function (d) {
       var deg = -90 + (360 / (data.length)) * i
@@ -34,20 +39,32 @@ Starplot.drawAxes = function (settings) {
       return 'line-' + data.indexOf(d)
     })
 
-  if (typeof settings !== 'undefined') {
-    if (settings.scaleAccuracy) {
-      addAxisScale(settings.scaleAccuracy)
-    }
-  }
-
   return Starplot
 }
 
-// Add Datasets to Starplot, takes array as argument
-Starplot.addDataSet = function (d) {
-  data = d
+Starplot.prototype.addAxisScale = function (accuracy) {
+  console.log('add Axis Scale')
+
+  // for (var j = 0; j < data.length; j++) {
+  //   var group = svgContainer.select('g').append('g')
+  //     .attr('class', 'scale-' + j)
+  //     .attr('transform', function () {
+  //       return 'rotate(' + (360 / data.length) * j + ')'
+  //     })
+
+//   for (var i = 1; i < accuracy; i++) {
+//     group.append('circle')
+//       .attr('cx', 0)
+//       .attr('cy', -i * 50 / accuracy)
+//       .attr('r', 0.75)
+//   }
+// }
+}
+
+Starplot.prototype.addDataSet = function (d) {
+  this.data.push(d)
+  var data = d
   dataSetCount++
-  // console.log(data)
 
   var dataConvert = function () {
     var results = []
@@ -64,7 +81,6 @@ Starplot.addDataSet = function (d) {
   }
 
   var lineData = dataConvert()
-  // console.log(lineData)
 
   var lineFunction = d3.svg.line()
     .x(function (d) {
@@ -75,36 +91,17 @@ Starplot.addDataSet = function (d) {
     })
     .interpolate('linear')
 
-  svgContainer.append('path')
+  this.svgContainer.append('path')
     .attr('class', 'data-set-' + dataSetCount)
     .attr('d', lineFunction(lineData) + 'Z')
 
   return Starplot
 }
 
-// Remove DataSet from Starplot, takes the class-name as argument
-Starplot.removeDataSet = function (dataSet) {
-  d3.select(dataSet).remove()
+Starplot.prototype.removeDataSet = function (dataSet) {
+  d3.select('.data-set-' + dataSet).remove()
 
   return Starplot
-}
-
-// Draw Scale on every axis
-var addAxisScale = function (accuracy) {
-  // for (var j = 0; j < data.length; j++) {
-  //   var group = svgContainer.select('g').append('g')
-  //     .attr('class', 'scale-' + j)
-  //     .attr('transform', function () {
-  //       return 'rotate(' + (360 / data.length) * j + ')'
-  //     })
-
-  //   for (var i = 1; i < accuracy; i++) {
-  //     group.append('circle')
-  //       .attr('cx', 0)
-  //       .attr('cy', -i * 50 / accuracy)
-  //       .attr('r', 0.75)
-  //   }
-  // }
 }
 
 module.exports = Starplot
