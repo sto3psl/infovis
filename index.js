@@ -48,6 +48,9 @@ domready(function () {
   console.log(plot.data)
 
   var plot2 = new Starplot([10, 20, 30, 40, 50], 'main')
+  var plot3 = new Starplot([10, 20, 30, 40, 50], 'main')
+  var plot4 = new Starplot([10, 20, 30, 40, 50], 'main')
+  var plot5 = new Starplot([10, 20, 30, 40, 50], 'main')
 
   // plot.removeDataSet(1)
   plot.addAxisScale()

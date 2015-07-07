@@ -26,20 +26,24 @@ circle {
 path {
   stroke: gray(200, 50%);
   stroke-width: .5px;
-  fill: gray(200, 50%);
+  fill: transparent;
 }
 
-.data-set-1, .data-set-4 {
+.scale {
+  fill: transparent;
+}
+
+.data-set-1, .blue {
   stroke: var(--blue);
   fill: color(var(--blue) a(50%));
 }
 
-.data-set-2, .data-set-5 {
+.data-set-2, .green {
   stroke: var(--green);
   fill: color(var(--green) a(50%));
 }
 
-.data-set-3, .data-set-6 {
+.data-set-3, .red {
   stroke: var(--red);
   fill: color(var(--red) a(50%));
 }

@@ -1,14 +1,13 @@
 var d3 = require('d3')
 
-var dataSetCount = 0
-
 function Starplot (data, e) {
   this.data = []
   this.svgContainer = null
+  this.dataSetCount = 0
 
   this.draw(e)
   this.drawAxes(data)
-  this.addDataSet(data)
+  this.addDataSet(data, true)
 }
 
 Starplot.prototype.draw = function (e) {
@@ -42,47 +41,26 @@ Starplot.prototype.drawAxes = function (data) {
   return Starplot
 }
 
-Starplot.prototype.addAxisScale = function (accuracy) {
+Starplot.prototype.addAxisScale = function () {
   var data = this.data[1]
   console.log('add Axis Scale')
 
-  for (var i in data) {
-    var g = this.svgContainer.append('g')
-      .attr('class', 'scale-' + i)
+  for (var i = 0; i < 10; i++) {
+    this.addDataSet([10 * i, 10 * i, 10 * i, 10 * i, 10 * i], false)
 
-    for (var j = 0; j < 10; j++) {
-      g.append('circle')
-        .attr('cx', 0)
-        .attr('cy', -10 * j)
-        .attr('r', 0.75)
-    }
-
-    this.svgContainer.select('.scale-' + i)
-      .attr('transform', function () {
-        return 'rotate(' + (360 / data.length) * i + ')'
-      })
   }
-
-  // for (var j = 0; j < data.length; j++) {
-  //   var group = this.svgContainer.select('g').append('g')
-  //     .attr('class', 'scale-' + j)
-  //     .attr('transform', function () {
-  //       return 'rotate(' + (360 / data.length) * j + ')'
-  //     })
-
-//   for (var i = 1; i < accuracy; i++) {
-//     group.append('circle')
-//       .attr('cx', 0)
-//       .attr('cy', -i * 50 / accuracy)
-//       .attr('r', 0.75)
-//   }
-// }
 }
 
-Starplot.prototype.addDataSet = function (d) {
-  this.data.push(d)
+Starplot.prototype.addDataSet = function (d, push) {
+  if (push === undefined) {
+    push = true
+  }
+  if (push) {
+    this.data.push(d)
+  }
   var data = d
-  dataSetCount++
+  this.dataSetCount++
+  var count = this.dataSetCount
 
   var dataConvert = function () {
     var results = []
@@ -110,7 +88,13 @@ Starplot.prototype.addDataSet = function (d) {
     .interpolate('linear')
 
   this.svgContainer.append('path')
-    .attr('class', 'data-set-' + dataSetCount)
+    .attr('class', function () {
+      if (push) {
+        return 'data-set-' + count
+      } else {
+        return 'scale'
+      }
+    })
     .attr('d', lineFunction(lineData) + 'Z')
 
   return Starplot
