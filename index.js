@@ -39,6 +39,18 @@ getJSON('./data/agency.json', function (data) {
 })
 
 domready(function () {
+  var clickControl = false
+  document.querySelector('#help').addEventListener('click', function () {
+    if (clickControl === false) {
+      document.querySelector('#help-div').style.display = 'block'
+      clickControl = true
+    }
+    else {
+      document.querySelector('#help-div').style.display = 'none'
+      clickControl = false
+    }
+
+  }, false)
   // here comes Code which doesnt need the data
   var plot = new Starplot({
     data: [90, 20, 50, 25, 8],
