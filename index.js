@@ -4,8 +4,6 @@ var Starplot = require('./starplot')
 var getJSON = require('./getJSON')
 
 getJSON('./data/agency.json', function (data) {
-  // console.log(data)
-
   var select = document.querySelector('#agency')
 
   for (var i = 0; i < data.length; i++) {
@@ -16,8 +14,6 @@ getJSON('./data/agency.json', function (data) {
   }
 
   getJSON('./data/stops.json', function (data) {
-    // console.log(data)
-
     var select = document.querySelector('#stops')
 
     for (var i = 0; i < 20; i++) {
