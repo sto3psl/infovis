@@ -1,11 +1,16 @@
 /* Hier werden nützliche Variablen für unser CSS deklariert */
 
 :root {
-  --font-color: #444;
+  --font-color: gray(35%);
   --svg-font-size: .5em;
+
+  --light-grey: gray(95%);
+  --grey: gray(80%);
+  --dark-grey: gray(50%);
   --blue: #39AADE;
   --green: #78D15E;
   --yellow: #F0E864;
   --red: #DB4038;
   --stroke: 1px;
+  --stroke-polygon: 2px;
 }

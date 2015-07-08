@@ -46,10 +46,7 @@ domready(function () {
     data: [90, 20, 50, 25, 8],
     selector: '.plot'
   })
-
-  plot.addDataSet([80, 50, 20, 45, 28])
-
-  console.log(plot.data)
+  plot.addDataSet([50, 40, 10, 60, 53])
 
   var plot1 = new Starplot({
     data: [90, 20, 50, 25, 8],
@@ -57,7 +54,7 @@ domready(function () {
     label: 'Bahnhof'
   })
   var plot2 = new Starplot({
-    data: [90, 20, 50, 25, 8],
+    data: [50, 40, 10, 60, 53],
     selector: '.small-plots',
     label: 'Bahnhof'
   })
@@ -66,4 +63,16 @@ domready(function () {
     selector: '.small-plots',
     label: 'Bahnhof'
   })
+
+  // plot3.click()
+
+  // var smallPlots = document.querySelectorAll('.small-plots div')
+  // console.log(smallPlots)
+
+  // for (var i = 0; i < smallPlots.length; i++) {
+  //   smallPlots[i].addEventListener('click', function () {
+  //     console.log(this)
+  //     this.className += ' active'
+  //   }, false)
+  // }
 })

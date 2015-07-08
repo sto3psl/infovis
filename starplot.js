@@ -18,11 +18,13 @@ function Starplot (data) {
 
   this.draw(data.selector)
   if (data.selector !== '.small-plots') {
-    this.drawAxes(data.data)
     this.addAxisScale()
+    this.drawAxes(data.data)
   }
   this.addDataSet(data.data, true)
   this.addLabel(this.label)
+
+  // console.log(this.data)
 }
 
 Starplot.prototype.draw = function (e) {
@@ -57,6 +59,7 @@ Starplot.prototype.drawAxes = function (data) {
     .attr('y1', 0)
     .attr('x2', 100)
     .attr('y2', 0)
+    .attr('stroke-linecap', 'round')
     .attr('transform', function (d) {
       var deg = -90 + (360 / (data.length)) * i
       i++
@@ -71,11 +74,9 @@ Starplot.prototype.drawAxes = function (data) {
 
 Starplot.prototype.addAxisScale = function () {
   var data = this.data[1]
-  console.log('add Axis Scale')
 
   for (var i = 0; i < 10; i++) {
     this.addDataSet([10 * i, 10 * i, 10 * i, 10 * i, 10 * i], false)
-
   }
 }
 

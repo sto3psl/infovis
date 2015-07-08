@@ -1,6 +1,6 @@
 /* Hier kommen alle Styles rein die sich auf SVG beziehen */
 svg {
-  background: radial-gradient(#fff, #ddd);
+  background: var(--light-grey);
   border-radius: 2px;
   display: block;
   width: 100%;
@@ -27,9 +27,14 @@ circle {
 }
 
 path {
-  stroke: gray(200, 50%);
+  stroke: var(--grey);
   stroke-width: var(--stroke);
   fill: transparent;
+}
+
+.small-plots .active svg path {
+  fill: var(--blue);
+  stroke: var(--blue);
 }
 
 .scale {
@@ -37,21 +42,22 @@ path {
 }
 
 .small-plots .data-set-0 {
-  stroke: grey;
-  fill: grey;
+  stroke: var(--dark-grey);
+  fill: var(--dark-grey);
 }
 
-.data-set-0, .blue {
+.data-set-0 {
   stroke: var(--blue);
+  stroke-width: var(--stroke-polygon);
   fill: color(var(--blue) a(50%));
 }
 
-.data-set-1, .green {
+.data-set-1 {
   stroke: var(--green);
   fill: color(var(--green) a(50%));
 }
 
-.data-set-2, .red {
+.data-set-2 {
   stroke: var(--red);
   fill: color(var(--red) a(50%));
 }
