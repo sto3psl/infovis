@@ -2,36 +2,29 @@ var domready = require('domready')
 
 var Starplot = require('./starplot')
 var getJSON = require('./getJSON')
+var generateStops = require('./generateStops')
+
+var agenciesRaw = []
+var stopsRaw = []
+var routesRaw = []
+
+var stops = []
 
 getJSON('./data/agency.json', function (data) {
-  var select = document.querySelector('#agency')
 
-  for (var i = 0; i < data.length; i++) {
-    var opt = document.createElement('option')
-    opt.value = data[i].agency_name
-    opt.innerHTML = data[i].agency_name
-    select.appendChild(opt)
-  }
+  agenciesRaw = data
 
   getJSON('./data/stops.json', function (data) {
-    var select = document.querySelector('#stops')
 
-    for (var i = 0; i < 20; i++) {
-      var opt = document.createElement('option')
-      opt.value = data[i].stop_name
-      opt.innerHTML = data[i].stop_name + ' ' + data[i].route.length
-      select.appendChild(opt)
-    }
+    stopsRaw = data
 
     getJSON('./data/routes.json', function (data) {
-      var select = document.querySelector('#route')
 
-      for (var i = 0; i < 20; i++) {
-        var opt = document.createElement('option')
-        opt.value = data[i].route_short_name
-        opt.innerHTML = 'Linie ' + data[i].route_short_name
-        select.appendChild(opt)
-      }
+      routesRaw = data
+
+      stops = generateStops(stopsRaw, routesRaw)
+
+      console.log(stops[10000])
     })
   })
 })
@@ -43,6 +36,7 @@ domready(function () {
     selector: '.plot'
   })
   plot.addDataSet([50, 40, 10, 60, 53])
+  plot.addDataSet([38, 75, 37, 85, 13])
 
   var plot1 = new Starplot({
     data: [90, 20, 50, 25, 8],
@@ -55,7 +49,7 @@ domready(function () {
     label: 'Bahnhof'
   })
   var plot3 = new Starplot({
-    data: [90, 20, 50, 25, 8],
+    data: [38, 75, 37, 85, 13],
     selector: '.small-plots',
     label: 'Bahnhof'
   })
