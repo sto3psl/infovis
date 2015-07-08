@@ -42,23 +42,28 @@ getJSON('./data/agency.json', function (data) {
 
 domready(function () {
   // here comes Code which doesnt need the data
-  var plot = new Starplot([10, 20, 30, 40, 50], '.plot')
-  plot.addDataSet([20, 20, 30, 40, 50])
+  var plot = new Starplot({
+    data: [90, 20, 50, 25, 8],
+    selector: '.plot'
+  })
+
+  plot.addDataSet([80, 50, 20, 45, 28])
 
   console.log(plot.data)
 
-  var plot2 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot3 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot4 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot5 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot6 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot7 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot8 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot9 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-  var plot10 = new Starplot([10, 20, 30, 40, 50], '.small-plots')
-
-  // plot.removeDataSet(1)
-  plot.addAxisScale()
-
-  console.log(plot2.data)
+  var plot1 = new Starplot({
+    data: [90, 20, 50, 25, 8],
+    selector: '.small-plots',
+    label: 'Bahnhof'
+  })
+  var plot2 = new Starplot({
+    data: [90, 20, 50, 25, 8],
+    selector: '.small-plots',
+    label: 'Bahnhof'
+  })
+  var plot3 = new Starplot({
+    data: [90, 20, 50, 25, 8],
+    selector: '.small-plots',
+    label: 'Bahnhof'
+  })
 })

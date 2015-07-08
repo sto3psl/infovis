@@ -1,22 +1,50 @@
 var d3 = require('d3')
 
-function Starplot (data, e) {
+function Starplot (data) {
   this.data = []
+  this.label = data.label
+  this.selector = data.selector
+  this.width = 200
+  this.height = 200
+  this.centerX = -100
+  this.centerY = -105
+
+  if (data.selector === '.small-plots') {
+    this.centerY = -100
+  }
+
   this.svgContainer = null
   this.dataSetCount = 0
 
-  this.draw(e)
-  this.drawAxes(data)
-  this.addDataSet(data, true)
+  this.draw(data.selector)
+  if (data.selector !== '.small-plots') {
+    this.drawAxes(data.data)
+    this.addAxisScale()
+  }
+  this.addDataSet(data.data, true)
+  this.addLabel(this.label)
 }
 
 Starplot.prototype.draw = function (e) {
   this.svgContainer = d3.select(e).append('div')
     .attr('class', 'star-plot')
     .append('svg')
-    .attr('viewBox', '-100 -110 200 200')
+    .attr('viewBox', this.centerX + ' ' + this.centerY + ' ' + this.width + ' ' + this.height)
 
   return Starplot
+}
+
+Starplot.prototype.addLabel = function (label) {
+  if (label !== '') {
+    this.svgContainer.append('text')
+      .attr('x', 0)
+      .attr('y', 80)
+      .attr('text-anchor', 'middle')
+      .text(function () {
+        return label
+      })
+  }
+
 }
 
 Starplot.prototype.drawAxes = function (data) {
@@ -53,17 +81,17 @@ Starplot.prototype.addAxisScale = function () {
 
 Starplot.prototype.addDataSet = function (d, push) {
   if (push === undefined) {
+    this.dataSetCount++
     push = true
   }
   if (push) {
     this.data.push(d)
   }
-  var data = d
-  this.dataSetCount++
   var count = this.dataSetCount
 
-  var dataConvert = function () {
+  var dataConvert = function (d) {
     var results = []
+    var data = d
 
     for (var i = 0; i < data.length; i++) {
       var coords = {}
@@ -76,7 +104,7 @@ Starplot.prototype.addDataSet = function (d, push) {
     return results
   }
 
-  var lineData = dataConvert()
+  var lineData = dataConvert(d)
 
   var lineFunction = d3.svg.line()
     .x(function (d) {
