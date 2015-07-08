@@ -17,7 +17,6 @@ function generateStops (stops, routes) {
 
   console.log('Haltestellen: ' + stops.length)
   console.log('Linien: ' + routes.length)
-  console.log(result.length)
   return result
 }
 

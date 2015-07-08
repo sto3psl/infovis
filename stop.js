@@ -1,4 +1,5 @@
 var arrayUniq = require('array-uniq')
+var Starplot = require('./starplot')
 
 function Stop (stop, route) {
   // console.log(stop)
@@ -18,6 +19,29 @@ function Stop (stop, route) {
   this.setAgencies()
   this.setTypes()
   this.setAverageTripsPerRoute()
+}
+
+Stop.prototype.drawStarplot = function () {
+  var data = this.getStopData()
+  var result = []
+
+  for (var i = 0; i < data.length; i++) {
+    if (data[i] < 10) {
+      result[i] = data[i] * 10
+    } else if (data[i] > 10 && data[i] < 100) {
+      result[i] = data[i]
+    } else if (data[i] > 100 && data[i] < 1000) {
+      result[i] = data[i] / 10
+    } else {
+      result[i] = data[i] / 100
+    }
+  }
+
+  var plot = new Starplot({
+    selector: '.small-plots',
+    label: this.name,
+    data: result
+  })
 }
 
 Stop.prototype.setTypes = function () {
@@ -45,12 +69,20 @@ Stop.prototype.setAverageTripsPerRoute = function () {
 }
 
 Stop.prototype.getStopData = function () {
-  return [
+  console.log([
     this.getAgencyCount(),
     this.getRouteCount(),
     this.getTripCount(),
     this.getTypeCount(),
     this.getAverageTripsPerRoute()
+  ])
+
+  return [
+    this.getAgencyCount(),
+    this.getRouteCount(),
+    this.getTripCount(),
+    this.getAverageTripsPerRoute(),
+    this.getTypeCount()
   ]
 }
 

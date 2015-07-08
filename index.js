@@ -24,7 +24,16 @@ getJSON('./data/agency.json', function (data) {
 
       stops = generateStops(stopsRaw, routesRaw)
 
-      console.log(stops[10000])
+      stops[0].getStopData()
+      stops[1000].drawStarplot()
+      stops[2000].drawStarplot()
+      stops[3000].drawStarplot()
+      stops[4000].drawStarplot()
+      stops[5000].drawStarplot()
+      stops[6000].drawStarplot()
+      stops[7000].drawStarplot()
+      stops[8000].drawStarplot()
+      stops[9000].drawStarplot()
     })
   })
 })
@@ -37,22 +46,6 @@ domready(function () {
   })
   plot.addDataSet([50, 40, 10, 60, 53])
   plot.addDataSet([38, 75, 37, 85, 13])
-
-  var plot1 = new Starplot({
-    data: [90, 20, 50, 25, 8],
-    selector: '.small-plots',
-    label: 'Bahnhof'
-  })
-  var plot2 = new Starplot({
-    data: [50, 40, 10, 60, 53],
-    selector: '.small-plots',
-    label: 'Bahnhof'
-  })
-  var plot3 = new Starplot({
-    data: [38, 75, 37, 85, 13],
-    selector: '.small-plots',
-    label: 'Bahnhof'
-  })
 
   // plot3.click()
 
