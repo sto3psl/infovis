@@ -33,32 +33,33 @@ h1 {
 
 main {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   width: 70vw;
   height: 40vw;
   margin: 0 auto;
   margin-top: 6em;
+  padding: 2vw;
 }
 
-main div:first-child {
-  font-size: 1.5em;
-  width: 35vw;
-  height: 35vw;
-  padding-left: 1vw;
+main div {
+  width: 50%;
 }
 
-.plot {
-  position: relative;
-  width: calc(35 / 3vw);
-  height: calc(35 / 3vw);
-  padding: 0 1vw 1vw 0;
+.small-plots {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.plot p {
-  margin:.5vw;
-  width: 90%;
-  position: absolute;
+.star-plot {
+  width: 100%;
+  padding: 1vw;
+}
+
+.small-plots .star-plot {
+  width: calc(100% / 3);
 }
 
 /* Media Query für Tablets*/
@@ -66,20 +67,7 @@ main div:first-child {
   main {
     width: 100vw;
     height: 50vw;
-  }
-
-  main div:first-child {
-    width: 50vw;
-    height: 50vw;
-  }
-
-  .plot {
-    position: relative;
-    width: calc(50 / 3vw);
-    height: calc(50 / 3vw);
-  /*  border-bottom: 1px solid green;
-    border-right: 1px solid green;*/
-  }
+  }  
 }
 
 @media (max-width: 760px) {
@@ -90,22 +78,5 @@ main div:first-child {
 
   h1 {
     font-size: 1.5em;
-  }
-
-  main {
-    margin-top: 1vh;
-    height: 100%;
-    flex-direction: row;
-  }
-
-  main div:first-child {
-    width: 100vw;
-    height: 100vw;
-  }
-
-  .plot {
-    width: 50vw;
-    height: 50vw;
-    padding: 1vw;
   }
 }

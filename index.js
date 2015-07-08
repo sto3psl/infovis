@@ -4,8 +4,6 @@ var Starplot = require('./starplot')
 var getJSON = require('./getJSON')
 
 getJSON('./data/agency.json', function (data) {
-  console.log(data)
-
   var select = document.querySelector('#agency')
 
   for (var i = 0; i < data.length; i++) {
@@ -16,8 +14,6 @@ getJSON('./data/agency.json', function (data) {
   }
 
   getJSON('./data/stops.json', function (data) {
-    console.log(data)
-
     var select = document.querySelector('#stops')
 
     for (var i = 0; i < 20; i++) {
@@ -42,36 +38,37 @@ getJSON('./data/agency.json', function (data) {
 
 domready(function () {
   // here comes Code which doesnt need the data
-  new Starplot('main')
-    .addDataSet([40, 10, 20, 20, 50])
-    .addDataSet([10, 50, 30, 40, 20])
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([40, 10, 20, 20, 50])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([10, 50, 30, 40, 20])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
+  var plot = new Starplot({
+    data: [90, 20, 50, 25, 8],
+    selector: '.plot'
+  })
+  plot.addDataSet([50, 40, 10, 60, 53])
+
+  var plot1 = new Starplot({
+    data: [90, 20, 50, 25, 8],
+    selector: '.small-plots',
+    label: 'Bahnhof'
+  })
+  var plot2 = new Starplot({
+    data: [50, 40, 10, 60, 53],
+    selector: '.small-plots',
+    label: 'Bahnhof'
+  })
+  var plot3 = new Starplot({
+    data: [90, 20, 50, 25, 8],
+    selector: '.small-plots',
+    label: 'Bahnhof'
+  })
+
+  // plot3.click()
+
+  // var smallPlots = document.querySelectorAll('.small-plots div')
+  // console.log(smallPlots)
+
+  // for (var i = 0; i < smallPlots.length; i++) {
+  //   smallPlots[i].addEventListener('click', function () {
+  //     console.log(this)
+  //     this.className += ' active'
+  //   }, false)
+  // }
 })
