@@ -24,12 +24,6 @@ getJSON('./data/agency.json', function (data) {
 
       stops = generateStops(stopsRaw, routesRaw)
 
-      for (var i = 0; i < stops.length; i++) {
-        if (stops[i].agencies.length > 1) {
-          console.log(stops[i].agencies)
-        }
-      };
-
       stops[0].getStopData()
       stops[1000].drawStarplot()
       stops[2000].drawStarplot()

@@ -69,14 +69,6 @@ Stop.prototype.setAverageTripsPerRoute = function () {
 }
 
 Stop.prototype.getStopData = function () {
-  console.log([
-    this.getAgencyCount(),
-    this.getRouteCount(),
-    this.getTripCount(),
-    this.getTypeCount(),
-    this.getAverageTripsPerRoute()
-  ])
-
   return [
     this.getAgencyCount(),
     this.getRouteCount(),
