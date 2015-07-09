@@ -31,8 +31,6 @@ getJSON('./data/agency.json', function (data) {
       stops = generateStops(stopsRaw, routesRaw)
       var filter = new Filter()
 
-      console.log(stops[1])
-
       document.querySelector('.vbb').addEventListener('change', function () {
         filter.addToAgencyList(document.querySelector('.vbb').value)
       }, false)
@@ -53,15 +51,17 @@ getJSON('./data/agency.json', function (data) {
       // document.querySelector('')
 
       stops[0].getStopData()
-      stops[1000].drawStarplot()
-      stops[2000].drawStarplot()
-      stops[3000].drawStarplot()
-      stops[4000].drawStarplot()
-      stops[5000].drawStarplot()
-      stops[6000].drawStarplot()
-      stops[7000].drawStarplot()
-      stops[8000].drawStarplot()
-      stops[9000].drawStarplot()
+      stops[100].drawStarplot()
+      stops[200].drawStarplot()
+      stops[300].drawStarplot()
+      stops[400].drawStarplot()
+      stops[500].drawStarplot()
+      stops[600].drawStarplot()
+      stops[700].drawStarplot()
+      stops[800].drawStarplot()
+      stops[900].drawStarplot()
+
+      console.log(stops[900])
 
       document.querySelector('#show-filter').addEventListener('click', function () {
         var header = document.querySelector('header')
