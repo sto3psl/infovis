@@ -31,9 +31,27 @@ getJSON('./data/agency.json', function (data) {
       stops = generateStops(stopsRaw, routesRaw)
       var filter = new Filter()
 
+      console.log(stops[1])
+
       document.querySelector('.vbb').addEventListener('change', function () {
         filter.addToAgencyList(document.querySelector('.vbb').value)
       }, false)
+
+      document.querySelector('.types').addEventListener('change', function () {
+        filter.addToTypeList(document.querySelector('.types').value)
+      }, false)
+
+      document.querySelector('#search').addEventListener('change', function () {
+        var searchResult = []
+        if (this.value.length > 2) {
+          console.log(this.value)
+          searchResult = filter.searchStopList(stops, this.value)
+        }
+        console.log(searchResult)
+        filter.renderSearchResults(searchResult)
+      }, false)
+
+      // document.querySelector('')
 
       stops[0].getStopData()
       stops[1000].drawStarplot()

@@ -12,21 +12,17 @@
         <script src="app.build.js"></script>
     </head>
     <body>
-        <header class="">
+        <header class="expanded">
             <div class="wrap">
                 <div>
-                    <input name="search" placeholder="Haltestelle">
-                    <ul>
+                    <input id="search" name="search" placeholder="Haltestelle">
+                    <ul id="search-results">
                         <li>Suchergebnisse</li>
                     </ul>
                 </div>
                 <div>
                     <input name="lines" placeholder="Linien">
                     <ul>
-                        <li><button>x</button> test</li>
-                        <li><button>x</button> test</li>
-                        <li><button>x</button> test</li>
-                        <li><button>x</button> test</li>
                     </ul>
                 </div>
                 <div>
@@ -37,13 +33,12 @@
                     </ul>
                 </div>
                 <div>
-                    <select name="types" size="1">
+                    <select name="types" class="types">
                         <option selected disabled>Linientyp</option>
                         <option>Bus</option>
                         <option>Bahn</option>
                     </select>
-                    <ul>
-                        <li><button>x</button> test</li>
+                    <ul id="typeList">
                     </ul>
                 </div>
                 <div>
@@ -56,7 +51,6 @@
                           <option value="">durchschnittliche Fahrten/Linie</option>
                     </select>
                     <ul>
-                        <li><button>x</button> test</li>
                     </ul>
                 </div>
             </div>
