@@ -24,6 +24,7 @@ Filter.prototype.renderList = function (e, list) {
     var name = 'del-' + i
     var value = document.querySelector('span.del-' + i)
 
+    
     // document.querySelector(elementName).addEventListener('click', this.removeFromList.bind(this), false)
   }
 }
@@ -55,6 +56,10 @@ Filter.prototype.searchStopList = function (stops, name) {
 
 Filter.prototype.renderSearchResults = function (results) {
   console.log(results)
+
+  if (this.agencyList[0] !== undefined) {
+    
+  }
   var element = document.querySelector('#search-results')
   element.innerHTML = '<li>Suchergebnisse</li>'
   for (var i = 0; i < results.length; i++) {

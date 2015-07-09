@@ -41,13 +41,12 @@ getJSON('./data/agency.json', function (data) {
         filter.addToTypeList(document.querySelector('.types').value)
       }, false)
 
-      document.querySelector('#search').addEventListener('change', function () {
+      document.querySelector('#search').addEventListener('input', function () {
         var searchResult = []
         if (this.value.length > 2) {
           console.log(this.value)
           searchResult = filter.searchStopList(stops, this.value)
         }
-        console.log(searchResult)
         filter.renderSearchResults(searchResult)
       }, false)
 
