@@ -12,19 +12,51 @@
         <script src="app.build.js"></script>
     </head>
     <body>
-        <header>
-          <input name="search" value="Haltestelle"><br>
-          <input name="lines"><br>
-          <select name="vvb" size="1">
-            <option>VBB1</option>
-            <option>VBB2</option>
-            <option>VBB3</option>
-          </select>
-          <select name="types" size="1">
-            <option>Bus</option>
-            <option>Bahn</option>
-            <option>Fähre</option>
-          </select>
+        <header class="">
+            <div class="wrap">
+                <div>
+                    <input id="search" name="search" placeholder="Haltestelle">
+                    <ul id="search-results">
+                        <li>Suchergebnisse</li>
+                    </ul>
+                </div>
+                <div>
+                    <input name="lines" placeholder="Linien">
+                    <ul>
+                    </ul>
+                </div>
+                <div>
+                    <select name="vvb" class="vbb">
+                        <option selected disabled>Verkehrsverbünde</option>
+                    </select>
+                    <ul id="agencyList">
+                    </ul>
+                </div>
+                <div>
+                    <select name="types" class="types">
+                        <option selected disabled>Linientyp</option>
+                        <option>Bus</option>
+                        <option>Bahn</option>
+                    </select>
+                    <ul id="typeList">
+                    </ul>
+                </div>
+                <div>
+                    <select name="sort" id="sort">
+                        <option selected disabled>Sortieren nach:</option>
+                          <option value="">Verkehrsverbünde</option>
+                          <option value="">Linien</option>
+                          <option value="">Typen</option>
+                          <option value="">Fahrten</option>
+                          <option value="">durchschnittliche Fahrten/Linie</option>
+                    </select>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <button id="show-filter">
+                <img src="assets/ios-arrow-down.svg" alt="">
+            </button>
         </header>
         <main>
             <div class="plot">

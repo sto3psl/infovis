@@ -32,8 +32,10 @@ Stop.prototype.drawStarplot = function () {
       result[i] = data[i]
     } else if (data[i] > 100 && data[i] < 1000) {
       result[i] = data[i] / 10
-    } else {
+    } else if (data[i] > 1000 && data[i] < 10000) {
       result[i] = data[i] / 100
+    } else {
+      result[i] = data[i] / 1000
     }
   }
 
@@ -71,8 +73,8 @@ Stop.prototype.setAverageTripsPerRoute = function () {
 Stop.prototype.getStopData = function () {
   return [
     this.getAgencyCount(),
-    this.getRouteCount(),
     this.getTripCount(),
+    this.getRouteCount(),
     this.getAverageTripsPerRoute(),
     this.getTypeCount()
   ]
