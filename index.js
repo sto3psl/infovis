@@ -53,13 +53,13 @@ getJSON('./data/agency.json', function (data) {
       stops[0].getStopData()
       stops[115].drawStarplot()
       console.log(stops[115])
-      // stops[200].drawStarplot()
-      // stops[300].drawStarplot()
-      // stops[400].drawStarplot()
-      // stops[500].drawStarplot()
-      // stops[600].drawStarplot()
-      // stops[700].drawStarplot()
-      // stops[800].drawStarplot()
+      stops[200].drawStarplot()
+      stops[300].drawStarplot()
+      stops[400].drawStarplot()
+      stops[500].drawStarplot()
+      stops[600].drawStarplot()
+      stops[700].drawStarplot()
+      stops[800].drawStarplot()
       stops[900].drawStarplot()
 
       document.querySelector('#show-filter').addEventListener('click', function () {
@@ -91,11 +91,9 @@ domready(function () {
   }, false)
   // here comes Code which doesnt need the data
   var plot = new Starplot({
-    data: [90, 20, 50, 25, 8],
+    data: [0, 0, 0, 0, 0],
     selector: '.plot'
   })
-  plot.addDataSet([50, 40, 10, 60, 53])
-  plot.addDataSet([38, 75, 37, 85, 13])
 
   // plot3.click()
 

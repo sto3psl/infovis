@@ -35,7 +35,8 @@ Stop.prototype.drawStarplot = function () {
   var plot = new Starplot({
     selector: '.small-plots',
     label: this.name,
-    data: result
+    data: result,
+    id: this.id
   })
 }
 
