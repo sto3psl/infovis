@@ -1,5 +1,8 @@
 var arrayUniq = require('array-uniq')
 var Starplot = require('./starplot')
+var Hammer = require('hammerjs')
+
+var template = require('./views/details.jade')
 
 function Stop (stop, route) {
   // console.log(stop)
@@ -12,6 +15,7 @@ function Stop (stop, route) {
   this.averageTripsPerRoute = 0
   this.agencies = []
   this.types = []
+  this.averageAttributes = []
 
   this.dev = route
 
@@ -19,31 +23,53 @@ function Stop (stop, route) {
   this.setAgencies()
   this.setTypes()
   this.setAverageTripsPerRoute()
+  // console.log('#stop-' + this.id)
+}
+
+Stop.prototype.addEvents = function (data) {
+  var hammertime = new Hammer(document.querySelector('#stop-' + this.id))
+
+  hammertime.on('doubletap', function (ev) {
+    console.log(data.routes)
+    var smallPlots = document.querySelectorAll('.small-plots .star-plot')
+
+    for (var i = 0; i < smallPlots.length; i++) {
+      // smallPlots[i].style.display = 'none'
+    }
+    console.log(data.name)
+    document.querySelector('.small-plots .details').style.display = 'block'
+    document.querySelector('.small-plots .details').innerHTML += template({data: data})
+
+    document.querySelector('.details button').addEventListener('click', function () {
+      document.querySelector('.small-plots .details').style.display = 'none'
+      document.querySelector('.small-plots .details').innerHTML = ''
+      var smallPlots = document.querySelectorAll('.small-plots .star-plot')
+
+      // for (var i = 0; i < smallPlots.length; i++) {
+      //   smallPlots[i].style.display = 'block'
+      // }
+    }, false)
+  })
 }
 
 Stop.prototype.drawStarplot = function () {
   var data = this.getStopData()
   var result = []
 
-  for (var i = 0; i < data.length; i++) {
-    if (data[i] < 10) {
-      result[i] = data[i] * 10
-    } else if (data[i] > 10 && data[i] < 100) {
-      result[i] = data[i]
-    } else if (data[i] > 100 && data[i] < 1000) {
-      result[i] = data[i] / 10
-    } else if (data[i] > 1000 && data[i] < 10000) {
-      result[i] = data[i] / 100
-    } else {
-      result[i] = data[i] / 1000
-    }
-  }
+  result[0] = data[0] / 1000
+  result[1] = data[1] / 100
+  result[2] = data[2] * 5
+  result[3] = data[3] * 20
+  result[4] = data[4] * 20
 
   var plot = new Starplot({
     selector: '.small-plots',
     label: this.name,
-    data: result
+    data: result,
+    id: this.id
   })
+
+  this.addEvents(this)
 }
 
 Stop.prototype.setTypes = function () {
@@ -72,10 +98,10 @@ Stop.prototype.setAverageTripsPerRoute = function () {
 
 Stop.prototype.getStopData = function () {
   return [
-    this.getAgencyCount(),
     this.getTripCount(),
-    this.getRouteCount(),
     this.getAverageTripsPerRoute(),
+    this.getRouteCount(),
+    this.getAgencyCount(),
     this.getTypeCount()
   ]
 }

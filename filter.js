@@ -50,12 +50,12 @@ Filter.prototype.searchStopList = function (stops, name) {
       result.push(stops[i])
     }
   }
-  console.log(result)
+  // console.log(result)
   return result
 }
 
 Filter.prototype.renderSearchResults = function (results) {
-  console.log(results)
+  // console.log(results)
 
   if (this.agencyList[0] !== undefined) {
     
@@ -68,7 +68,7 @@ Filter.prototype.renderSearchResults = function (results) {
     element.appendChild(li)
   }
 
-  console.log(element)
+  // console.log(element)
 }
 
 module.exports = Filter

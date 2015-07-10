@@ -42,7 +42,7 @@ getJSON('./data/agency.json', function (data) {
       document.querySelector('#search').addEventListener('input', function () {
         var searchResult = []
         if (this.value.length > 2) {
-          console.log(this.value)
+          // console.log(this.value)
           searchResult = filter.searchStopList(stops, this.value)
         }
         filter.renderSearchResults(searchResult)
@@ -51,7 +51,8 @@ getJSON('./data/agency.json', function (data) {
       // document.querySelector('')
 
       stops[0].getStopData()
-      stops[100].drawStarplot()
+      stops[115].drawStarplot()
+      console.log(stops[115])
       stops[200].drawStarplot()
       stops[300].drawStarplot()
       stops[400].drawStarplot()
@@ -60,8 +61,6 @@ getJSON('./data/agency.json', function (data) {
       stops[700].drawStarplot()
       stops[800].drawStarplot()
       stops[900].drawStarplot()
-
-      console.log(stops[900])
 
       document.querySelector('#show-filter').addEventListener('click', function () {
         var header = document.querySelector('header')
@@ -92,11 +91,9 @@ domready(function () {
   }, false)
   // here comes Code which doesnt need the data
   var plot = new Starplot({
-    data: [90, 20, 50, 25, 8],
+    data: [0, 0, 0, 0, 0],
     selector: '.plot'
   })
-  plot.addDataSet([50, 40, 10, 60, 53])
-  plot.addDataSet([38, 75, 37, 85, 13])
 
   // plot3.click()
 

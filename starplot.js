@@ -1,4 +1,5 @@
 var d3 = require('d3')
+var Hammer = require('hammerjs')
 
 function Starplot (data) {
   this.data = []
@@ -8,6 +9,8 @@ function Starplot (data) {
   this.height = 200
   this.centerX = -100
   this.centerY = -105
+  this.id = data.id
+  this.clicked = false
 
   if (data.selector === '.small-plots') {
     this.centerY = -100
@@ -16,20 +19,70 @@ function Starplot (data) {
   this.svgContainer = null
   this.dataSetCount = 0
 
-  this.draw(data.selector)
-  if (data.selector !== '.small-plots') {
+  this.draw(data.selector, data.id)
+  // if (data.selector !== '.small-plots') {
     this.addAxisScale()
     this.drawAxes(data.data)
-  }
+  // }
   this.addDataSet(data.data, true)
   this.addLabel(this.label)
 
   // console.log(this.data)
+  this.addEventHandler()
 }
 
-Starplot.prototype.draw = function (e) {
+Starplot.prototype.addEventHandler = function () {
+  document.querySelector('#stop-' + this.id).addEventListener('click', function () {
+
+    if (this.className === 'active star-plot') {
+      this.className = 'star-plot'
+    } else if (this.className !== 'active star-plot') {
+      this.className = 'active star-plot'
+    }
+
+    var dataSet = '#' + this.id + ' .data-set-0'
+    var path = document.querySelector(dataSet).getAttribute('d')
+
+    if (!this.clicked) {
+      d3.select('.plot svg').append('path')
+        .attr('class', 'data-set ' + this.id)
+        .attr('d', path)
+      this.clicked = true
+    } else if (this.clicked) {
+      d3.select('.' + this.id).remove()
+      this.clicked = false
+    }
+  }, false)
+
+  // document.querySelector('#stop-' + this.id).addEventListener('dblclick', function () {
+  //   console.log('klick klick')
+  // }, false)
+
+  var hammertime = new Hammer(document.querySelector('#stop-' + this.id))
+
+  // hammertime.on('doubletap', function (ev) {
+  //   console.log(ev.target)
+  //   var id = ev.target.parentNode.parentNode.id
+  //   // console.log(dataSet)
+  //   var path = ev.target.getAttribute('d')
+
+  //   d3.select('.plot svg').append('path')
+  //       .attr('class', 'data-set ' + id)
+  //       .attr('d', path)
+
+  //   var smallPlots = document.querySelectorAll('.small-plots .star-plot')
+  //   for (var i = 0; i < smallPlots.length; i++) {
+  //     smallPlots[i].style.display = 'none'
+  //   }
+
+  //   console.log(name)
+  // })
+}
+
+Starplot.prototype.draw = function (e, id) {
   this.svgContainer = d3.select(e).append('div')
     .attr('class', 'star-plot')
+    .attr('id', 'stop-' + id)
     .append('svg')
     .attr('viewBox', this.centerX + ' ' + this.centerY + ' ' + this.width + ' ' + this.height)
 
@@ -40,7 +93,7 @@ Starplot.prototype.addLabel = function (label) {
   if (label !== '') {
     this.svgContainer.append('text')
       .attr('x', 0)
-      .attr('y', 80)
+      .attr('y', 95)
       .attr('text-anchor', 'middle')
       .text(function () {
         return label
