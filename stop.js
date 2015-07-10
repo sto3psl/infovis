@@ -1,5 +1,8 @@
 var arrayUniq = require('array-uniq')
 var Starplot = require('./starplot')
+var Hammer = require('hammerjs')
+
+var template = require('./views/details.jade')
 
 function Stop (stop, route) {
   // console.log(stop)
@@ -20,6 +23,33 @@ function Stop (stop, route) {
   this.setAgencies()
   this.setTypes()
   this.setAverageTripsPerRoute()
+  // console.log('#stop-' + this.id)
+}
+
+Stop.prototype.addEvents = function (data) {
+  var hammertime = new Hammer(document.querySelector('#stop-' + this.id))
+
+  hammertime.on('doubletap', function (ev) {
+    console.log(data.routes)
+    var smallPlots = document.querySelectorAll('.small-plots .star-plot')
+
+    for (var i = 0; i < smallPlots.length; i++) {
+      // smallPlots[i].style.display = 'none'
+    }
+    console.log(data.name)
+    document.querySelector('.small-plots .details').style.display = 'block'
+    document.querySelector('.small-plots .details').innerHTML += template({data: data})
+
+    document.querySelector('.details button').addEventListener('click', function () {
+      document.querySelector('.small-plots .details').style.display = 'none'
+      document.querySelector('.small-plots .details').innerHTML = ''
+      var smallPlots = document.querySelectorAll('.small-plots .star-plot')
+
+      // for (var i = 0; i < smallPlots.length; i++) {
+      //   smallPlots[i].style.display = 'block'
+      // }
+    }, false)
+  })
 }
 
 Stop.prototype.drawStarplot = function () {
@@ -38,6 +68,8 @@ Stop.prototype.drawStarplot = function () {
     data: result,
     id: this.id
   })
+
+  this.addEvents(this)
 }
 
 Stop.prototype.setTypes = function () {

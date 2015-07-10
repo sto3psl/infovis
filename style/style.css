@@ -1,6 +1,7 @@
 @import 'normalize.css';
 @import 'variables.css';
 @import 'svg.css';
+@import 'details.css';
 
 * {
   box-sizing: border-box;
@@ -28,6 +29,7 @@ header {
   position: fixed;
   width: 100vw;
   transition: height .3s ease-out;
+  z-index: 100;
 }
 
 header.expanded {

@@ -1,4 +1,5 @@
 var d3 = require('d3')
+var Hammer = require('hammerjs')
 
 function Starplot (data) {
   this.data = []
@@ -9,7 +10,6 @@ function Starplot (data) {
   this.centerX = -100
   this.centerY = -105
   this.id = data.id
-  console.log(data.id)
   this.clicked = false
 
   if (data.selector === '.small-plots') {
@@ -48,13 +48,35 @@ Starplot.prototype.addEventHandler = function () {
         .attr('class', 'data-set ' + this.id)
         .attr('d', path)
       this.clicked = true
-      console.log(d3.select('.' + this.id).style('fill'))
     } else if (this.clicked) {
       d3.select('.' + this.id).remove()
       this.clicked = false
     }
-
   }, false)
+
+  // document.querySelector('#stop-' + this.id).addEventListener('dblclick', function () {
+  //   console.log('klick klick')
+  // }, false)
+
+  var hammertime = new Hammer(document.querySelector('#stop-' + this.id))
+
+  // hammertime.on('doubletap', function (ev) {
+  //   console.log(ev.target)
+  //   var id = ev.target.parentNode.parentNode.id
+  //   // console.log(dataSet)
+  //   var path = ev.target.getAttribute('d')
+
+  //   d3.select('.plot svg').append('path')
+  //       .attr('class', 'data-set ' + id)
+  //       .attr('d', path)
+
+  //   var smallPlots = document.querySelectorAll('.small-plots .star-plot')
+  //   for (var i = 0; i < smallPlots.length; i++) {
+  //     smallPlots[i].style.display = 'none'
+  //   }
+
+  //   console.log(name)
+  // })
 }
 
 Starplot.prototype.draw = function (e, id) {

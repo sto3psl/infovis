@@ -16,6 +16,7 @@ text {
 }
 
 .star-plot {
+  display: block;
   border: 2px solid white;
 }
 
@@ -24,26 +25,24 @@ text {
   stroke: var(--dark-grey);
 }
 
-.data-set:nth-of-type(1),
-.active:nth-of-type(1) > svg .data-set-0 {
+.data-set:nth-of-type(1) {
   fill: color(var(--red) a(70%));
   stroke: var(--red);
 }
 
-.data-set:nth-of-type(2),
-.active:nth-of-type(2) > svg .data-set-0 {
+.data-set:nth-of-type(2) {
   fill: color(var(--blue) a(70%));
   stroke: var(--blue);
 }
 
-.data-set:nth-of-type(3),
-.active:nth-of-type(3) > svg .data-set-0 {
+.data-set:nth-of-type(3) {
   fill: color(var(--green) a(70%));
   stroke: var(--green);
 }
 
 .small-plots {
   display: flex;
+  position: relative;
   flex-wrap: wrap;
 }
 
