@@ -1,0 +1,32 @@
+button X
+h2= data.name
+h3 Verkehrsverbünde
+ul
+  each item in data.agencies
+    if (item === 'BMO---')
+      li Busverkehr Märkisch-Oderland GmbH
+    if (item === 'BON---')
+      li Busverkehr Oder-Spree GmbH
+    if (item === 'BVB---')
+      li Berliner Verkehrsbetriebe
+    if (item === 'HVG---')
+      li Havelbus Verkehrsgesellschaft mbH
+    if (item === 'N01---')
+      li DB Regio AG
+    if (item === 'UVGG__')
+      li Uckermärkische Verkehrsgesellschaft
+h3 Linien
+p
+each item in data.routes
+  span= item + ', '
+h3 Typen
+p
+each item in data.types
+  if (item === '700')
+    span Bus, 
+  else
+    span Bahn, 
+h3 Fahrten pro Woche
+p= data.tripCount
+h3 Durchschnittliche Fahrten/Linie
+p= data.averageTripsPerRoute

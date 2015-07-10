@@ -12,15 +12,84 @@
         <script src="app.build.js"></script>
     </head>
     <body>
-        <header>
-            <h1>InfoVis VBB-Fahrplandaten - Starplot</h1>
+        <header class="">
+            <div class="wrap">
+                <div>
+                    <input id="search" name="search" placeholder="Haltestelle">
+                    <ul id="search-results">
+                        <li>Suchergebnisse</li>
+                    </ul>
+                </div>
+                <div>
+                    <input name="lines" placeholder="Linien">
+                    <ul>
+                    </ul>
+                </div>
+                <div>
+                    <select name="vvb" class="vbb">
+                        <option selected disabled>Verkehrsverbünde</option>
+                    </select>
+                    <ul id="agencyList">
+                    </ul>
+                </div>
+                <div>
+                    <select name="types" class="types">
+                        <option selected disabled>Linientyp</option>
+                        <option>Bus</option>
+                        <option>Bahn</option>
+                    </select>
+                    <ul id="typeList">
+                    </ul>
+                </div>
+                <div>
+                    <select name="sort" id="sort">
+                        <option selected disabled>Sortieren nach:</option>
+                          <option value="">Verkehrsverbünde</option>
+                          <option value="">Linien</option>
+                          <option value="">Typen</option>
+                          <option value="">Fahrten</option>
+                          <option value="">durchschnittliche Fahrten/Linie</option>
+                    </select>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            <button id="show-filter">
+                <img src="assets/ios-arrow-down.svg" alt="">
+            </button>
         </header>
         <main>
+            <div class="plot">
+                
+            </div>
+            <div class="small-plots">
+                <div class="details"></div>
+            </div>
         </main>
-        <div class="data">
-            <select name="stops" id="stops">
-                <option>Haltestelle</option>
-            </select>
-        </div>
+        <footer>
+            <div>
+                <ul>
+                    <li>Achse 1 - Anzahl Fahrten/Woche</li>
+                    <li>Achse 2 - Durchschnittliche Fahrten/Linie</li>
+                    <li>Achse 3 - Anzahl Linien</li>
+                    <li>Achse 4 - Anzahl Verkehrsverbünde</li>
+                    <li>Achse 5 - Anzahl Typen</li>
+                </ul>
+            </div>
+          <label for="setting-1">
+            <input type="checkbox" name="setting-1" id="setting-1">
+            Setting 1
+          </label>  
+          <label for="setting-2">
+            <input type="checkbox" name="setting-2" id="setting-2">
+            Setting 2
+          </label>  
+           <label for="setting-3">
+            <input type="checkbox" name="setting-3" id="setting-3">
+            Setting 3
+          </label>  
+          <button id="help">Help</button>
+          <div id="help-div"  style="display:none;">Das ist das Hilfefenster.<br>Hier wirst du alles Wichtige erfahren !</div>
+        </footer> 
     </body>
 </html>

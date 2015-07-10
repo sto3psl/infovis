@@ -1,0 +1,38 @@
+.details {
+  display: none;
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 calc(var(--space) * 3) 0 calc(var(--space) * 3);
+}
+
+.details h2 {
+  text-align: center;
+  padding: calc(var(--space) * 2) 0;
+}
+
+.details h3 {
+  padding: calc(var(--space) * 2) 0;
+}
+
+.details ul {
+  list-style-type: circle;
+}
+
+.details li {
+  border: none;
+}
+
+.details button {
+  font-size: 1.4em;
+  color: var(--red);
+  border: none;
+  background: transparent;
+  display: inline-block;
+  float: right;
+}
+
+.details button:hover {
+  cursor: pointer;
+}

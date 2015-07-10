@@ -2,48 +2,106 @@ var domready = require('domready')
 
 var Starplot = require('./starplot')
 var getJSON = require('./getJSON')
+var generateStops = require('./generateStops')
+var Filter = require('./filter')
+
+var agenciesRaw = []
+var stopsRaw = []
+var routesRaw = []
+
+var stops = []
 
 getJSON('./data/agency.json', function (data) {
-  console.log(data)
+  agenciesRaw = data
+
+  var selectVbb = document.querySelector('.vbb')
+  for (var i = 0; i < agenciesRaw.length; i++) {
+    var option = document.createElement('option')
+    option.text = agenciesRaw[i].agency_name
+    selectVbb.add(option)
+  }
+
+  getJSON('./data/stops.json', function (data) {
+    stopsRaw = data
+
+    getJSON('./data/routes.json', function (data) {
+      routesRaw = data
+
+      stops = generateStops(stopsRaw, routesRaw)
+      var filter = new Filter()
+
+      document.querySelector('.vbb').addEventListener('change', function () {
+        filter.addToAgencyList(document.querySelector('.vbb').value)
+      }, false)
+
+      document.querySelector('.types').addEventListener('change', function () {
+        filter.addToTypeList(document.querySelector('.types').value)
+      }, false)
+
+      document.querySelector('#search').addEventListener('input', function () {
+        var searchResult = []
+        if (this.value.length > 2) {
+          // console.log(this.value)
+          searchResult = filter.searchStopList(stops, this.value)
+        }
+        filter.renderSearchResults(searchResult)
+      }, false)
+
+      // document.querySelector('')
+
+      stops[0].getStopData()
+      stops[115].drawStarplot()
+      stops[200].drawStarplot()
+      stops[300].drawStarplot()
+      stops[400].drawStarplot()
+      stops[500].drawStarplot()
+      stops[600].drawStarplot()
+      stops[700].drawStarplot()
+      stops[800].drawStarplot()
+      stops[900].drawStarplot()
+
+      document.querySelector('#show-filter').addEventListener('click', function () {
+        var header = document.querySelector('header')
+        var button = document.querySelector('#show-filter img')
+
+        if (header.className === 'expanded') {
+          header.className = 'not-expanded '
+          button.className = 'not-rotated'
+        } else if (header.className !== 'expanded') {
+          header.className = 'expanded'
+          button.className = 'rotated'
+        }
+      }, false)
+    })
+  })
 })
 
-var xhr = new window.XMLHttpRequest()
-
-xhr.onreadystatechange = function () {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    // here comes Code that executes after the data file is loaded
-    var data = JSON.parse(xhr.responseText)
-    console.log(data[0])
-
-    var select = document.querySelector('#stops')
-
-    for (var i = 100; i < 120; i++) {
-      var opt = document.createElement('option')
-      opt.value = data[i].stop_name
-      opt.innerHTML = data[i].stop_name + ' ' + data[i].route.length
-      select.appendChild(opt)
-    }
-  }
-}
-
-xhr.open('GET', './data/stops.json', true)
-xhr.send()
-
 domready(function () {
+  var clickControl = false
+  document.querySelector('#help').addEventListener('click', function () {
+    if (clickControl === false) {
+      document.querySelector('#help-div').style.display = 'block'
+      clickControl = true
+    } else {
+      document.querySelector('#help-div').style.display = 'none'
+      clickControl = false
+    }
+  }, false)
   // here comes Code which doesnt need the data
-  a = new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes({scaleAccuracy: 10})
-  new Starplot('main')
-    .addDataSet([30, 20, 40, 20, 10])
-    .drawAxes()
+  var plot = new Starplot({
+    data: [0, 0, 0, 0, 0],
+    selector: '.plot'
+  })
+
+  // plot3.click()
+
+  // var smallPlots = document.querySelectorAll('.small-plots div')
+  // console.log(smallPlots)
+
+// for (var i = 0; i < smallPlots.length; i++) {
+//   smallPlots[i].addEventListener('click', function () {
+//     console.log(this)
+//     this.className += ' active'
+//   }, false)
+// }
 })
