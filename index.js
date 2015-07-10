@@ -42,7 +42,7 @@ getJSON('./data/agency.json', function (data) {
       document.querySelector('#search').addEventListener('input', function () {
         var searchResult = []
         if (this.value.length > 2) {
-          console.log(this.value)
+          // console.log(this.value)
           searchResult = filter.searchStopList(stops, this.value)
         }
         filter.renderSearchResults(searchResult)
@@ -51,17 +51,16 @@ getJSON('./data/agency.json', function (data) {
       // document.querySelector('')
 
       stops[0].getStopData()
-      stops[100].drawStarplot()
-      stops[200].drawStarplot()
-      stops[300].drawStarplot()
-      stops[400].drawStarplot()
-      stops[500].drawStarplot()
-      stops[600].drawStarplot()
-      stops[700].drawStarplot()
-      stops[800].drawStarplot()
+      stops[115].drawStarplot()
+      console.log(stops[115])
+      // stops[200].drawStarplot()
+      // stops[300].drawStarplot()
+      // stops[400].drawStarplot()
+      // stops[500].drawStarplot()
+      // stops[600].drawStarplot()
+      // stops[700].drawStarplot()
+      // stops[800].drawStarplot()
       stops[900].drawStarplot()
-
-      console.log(stops[900])
 
       document.querySelector('#show-filter').addEventListener('click', function () {
         var header = document.querySelector('header')

@@ -17,10 +17,10 @@ function Starplot (data) {
   this.dataSetCount = 0
 
   this.draw(data.selector)
-  if (data.selector !== '.small-plots') {
+  // if (data.selector !== '.small-plots') {
     this.addAxisScale()
     this.drawAxes(data.data)
-  }
+  // }
   this.addDataSet(data.data, true)
   this.addLabel(this.label)
 
@@ -40,7 +40,7 @@ Starplot.prototype.addLabel = function (label) {
   if (label !== '') {
     this.svgContainer.append('text')
       .attr('x', 0)
-      .attr('y', 80)
+      .attr('y', 95)
       .attr('text-anchor', 'middle')
       .text(function () {
         return label

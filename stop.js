@@ -12,6 +12,7 @@ function Stop (stop, route) {
   this.averageTripsPerRoute = 0
   this.agencies = []
   this.types = []
+  this.averageAttributes = []
 
   this.dev = route
 
@@ -25,19 +26,11 @@ Stop.prototype.drawStarplot = function () {
   var data = this.getStopData()
   var result = []
 
-  for (var i = 0; i < data.length; i++) {
-    if (data[i] < 10) {
-      result[i] = data[i] * 10
-    } else if (data[i] > 10 && data[i] < 100) {
-      result[i] = data[i]
-    } else if (data[i] > 100 && data[i] < 1000) {
-      result[i] = data[i] / 10
-    } else if (data[i] > 1000 && data[i] < 10000) {
-      result[i] = data[i] / 100
-    } else {
-      result[i] = data[i] / 1000
-    }
-  }
+  result[0] = data[0] / 1000
+  result[1] = data[1] / 100
+  result[2] = data[2] * 5
+  result[3] = data[3] * 20
+  result[4] = data[4] * 20
 
   var plot = new Starplot({
     selector: '.small-plots',
@@ -72,10 +65,10 @@ Stop.prototype.setAverageTripsPerRoute = function () {
 
 Stop.prototype.getStopData = function () {
   return [
-    this.getAgencyCount(),
     this.getTripCount(),
-    this.getRouteCount(),
     this.getAverageTripsPerRoute(),
+    this.getRouteCount(),
+    this.getAgencyCount(),
     this.getTypeCount()
   ]
 }
