@@ -20,14 +20,13 @@ function Starplot (data) {
   this.dataSetCount = 0
 
   this.draw(data.selector, data.id)
-  // if (data.selector !== '.small-plots') {
+  if (data.selector !== '.small-plots') {
     this.addAxisScale()
     this.drawAxes(data.data)
-  // }
+  }
   this.addDataSet(data.data, true)
   this.addLabel(this.label)
 
-  // console.log(this.data)
   this.addEventHandler()
 }
 
@@ -53,30 +52,6 @@ Starplot.prototype.addEventHandler = function () {
       this.clicked = false
     }
   }, false)
-
-  // document.querySelector('#stop-' + this.id).addEventListener('dblclick', function () {
-  //   console.log('klick klick')
-  // }, false)
-
-  var hammertime = new Hammer(document.querySelector('#stop-' + this.id))
-
-  // hammertime.on('doubletap', function (ev) {
-  //   console.log(ev.target)
-  //   var id = ev.target.parentNode.parentNode.id
-  //   // console.log(dataSet)
-  //   var path = ev.target.getAttribute('d')
-
-  //   d3.select('.plot svg').append('path')
-  //       .attr('class', 'data-set ' + id)
-  //       .attr('d', path)
-
-  //   var smallPlots = document.querySelectorAll('.small-plots .star-plot')
-  //   for (var i = 0; i < smallPlots.length; i++) {
-  //     smallPlots[i].style.display = 'none'
-  //   }
-
-  //   console.log(name)
-  // })
 }
 
 Starplot.prototype.draw = function (e, id) {
