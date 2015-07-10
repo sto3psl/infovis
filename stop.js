@@ -30,7 +30,7 @@ Stop.prototype.addEvents = function (data) {
   var hammertime = new Hammer(document.querySelector('#stop-' + this.id))
 
   hammertime.on('doubletap', function (ev) {
-    console.log(data.routes)
+    // console.log(data.routes)
     var smallPlots = document.querySelectorAll('.small-plots .star-plot')
 
     for (var i = 0; i < smallPlots.length; i++) {

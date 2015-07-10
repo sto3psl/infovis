@@ -29,12 +29,12 @@ function generateStops (stops, routes) {
     average[i] = average[i] / stops.length
   }
 
-  console.log(average)
+  // console.log(average)
   for (i = 0; i < result.length; i++) {
     result[i].averageAttributes = average
   }
 
-  console.log(result[5])
+  // console.log(result[5])
 
   console.log('Haltestellen: ' + stops.length)
   console.log('Linien: ' + routes.length)

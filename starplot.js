@@ -97,6 +97,43 @@ Starplot.prototype.drawAxes = function (data) {
       return 'line-' + data.indexOf(d)
     })
 
+    console.log(data)
+
+  d3.select('.axes').append('image')
+    .attr('xlink:href', 'assets/Fahrten_Icon.svg')
+    .attr('x', 0)
+    .attr('y', -105)
+    .attr('width', '20px')
+    .attr('height', '20px')
+
+  d3.select('.axes').append('image')
+    .attr('xlink:href', 'assets/Durchschnitt_Icon.svg')
+    .attr('x', 83)
+    .attr('y', -30)
+    .attr('width', '18px')
+    .attr('height', '18px')
+
+  d3.select('.axes').append('image')
+    .attr('xlink:href', 'assets/Linie_Icon.svg')
+    .attr('x', 40)
+    .attr('y', 75)
+    .attr('width', '18px')
+    .attr('height', '18px')
+
+  d3.select('.axes').append('image')
+    .attr('xlink:href', 'assets/Verbuende_Icon.svg')
+    .attr('x', -58)
+    .attr('y', 73)
+    .attr('width', '20px')
+    .attr('height', '20px')
+
+  d3.select('.axes').append('image')
+    .attr('xlink:href', 'assets/Typen_Icon.svg')
+    .attr('x', -102)
+    .attr('y', -30)
+    .attr('width', '20px')
+    .attr('height', '20px')
+
   return Starplot
 }
 

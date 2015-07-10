@@ -14,7 +14,6 @@ var stops = []
 getJSON('./data/agency.json', function (data) {
   agenciesRaw = data
 
-  console.log(agenciesRaw)
   var selectVbb = document.querySelector('.vbb')
   for (var i = 0; i < agenciesRaw.length; i++) {
     var option = document.createElement('option')
@@ -52,7 +51,6 @@ getJSON('./data/agency.json', function (data) {
 
       stops[0].getStopData()
       stops[115].drawStarplot()
-      console.log(stops[115])
       stops[200].drawStarplot()
       stops[300].drawStarplot()
       stops[400].drawStarplot()

@@ -112,8 +112,25 @@ main div {
   margin: 14vh 0 0;
 }
 
-footer {
+footer label,
+footer button {
   display: none;
+}
+
+footer {
+  font-size: .8em;
+}
+
+footer div {
+  display: flex;
+  justify-content: center;
+  margin: var(--space) 0;
+}
+
+footer li {
+  display: inline;
+  padding: var(--padding-lr);
+  border: none;
 }
 
 
