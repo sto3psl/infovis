@@ -1,13 +1,11 @@
 var arrayUniq = require('array-uniq')
 var Starplot = require('./starplot')
 var Hammer = require('hammerjs')
+var d3 = require('d3')
 
 var template = require('./views/details.jade')
 
 function Stop (stop, route) {
-  // console.log(stop)
-  // console.log(route)
-
   this.id = stop.stop_id
   this.name = stop.stop_name
   this.routes = stop.route
@@ -16,6 +14,7 @@ function Stop (stop, route) {
   this.agencies = []
   this.types = []
   this.averageAttributes = []
+  this.hammertime = undefined
 
   this.dev = route
 
@@ -23,33 +22,23 @@ function Stop (stop, route) {
   this.setAgencies()
   this.setTypes()
   this.setAverageTripsPerRoute()
-  // console.log('#stop-' + this.id)
 }
 
-Stop.prototype.addEvents = function (data) {
-  var hammertime = new Hammer(document.querySelector('#stop-' + this.id))
-
-  hammertime.on('doubletap', function (ev) {
-    // console.log(data.routes)
-    var smallPlots = document.querySelectorAll('.small-plots .star-plot')
-
-    for (var i = 0; i < smallPlots.length; i++) {
-      // smallPlots[i].style.display = 'none'
-    }
-    console.log(data.name)
-    document.querySelector('.small-plots .details').style.display = 'block'
-    document.querySelector('.small-plots .details').innerHTML += template({data: data})
-
-    document.querySelector('.details button').addEventListener('click', function () {
-      document.querySelector('.small-plots .details').style.display = 'none'
-      document.querySelector('.small-plots .details').innerHTML = ''
-      var smallPlots = document.querySelectorAll('.small-plots .star-plot')
-
-      // for (var i = 0; i < smallPlots.length; i++) {
-      //   smallPlots[i].style.display = 'block'
-      // }
-    }, false)
+Stop.prototype.addTouchEvent = function (obj, event, func) {
+  this.hammertime.on(event, function () {
+    func(obj)
   })
+}
+
+Stop.prototype.showDetails = function (obj) {
+  console.log(obj)
+  document.querySelector('.small-plots .details').style.display = 'block'
+  document.querySelector('.small-plots .details').innerHTML += template({data: obj})
+
+  document.querySelector('.details button').addEventListener('click', function () {
+    document.querySelector('.small-plots .details').style.display = 'none'
+    document.querySelector('.small-plots .details').innerHTML = ''
+  }, false)
 }
 
 Stop.prototype.drawStarplot = function () {
@@ -62,14 +51,15 @@ Stop.prototype.drawStarplot = function () {
   result[3] = data[3] * 20
   result[4] = data[4] * 20
 
-  var plot = new Starplot({
+  this.plot = new Starplot({
     selector: '.small-plots',
     label: this.name,
     data: result,
     id: this.id
   })
 
-  this.addEvents(this)
+  this.hammertime = new Hammer(document.querySelector('#stop-' + this.id))
+  this.addTouchEvent(this, 'doubletap', this.showDetails)
 }
 
 Stop.prototype.setTypes = function () {
@@ -107,32 +97,26 @@ Stop.prototype.getStopData = function () {
 }
 
 Stop.prototype.getDev = function () {
-  console.log(this.dev)
   return this.dev
 }
 
 Stop.prototype.getName = function () {
-  // console.log(this.name)
   return this.name
 }
 
 Stop.prototype.getRouteCount = function () {
-  // console.log(this.routes.length)
   return this.routes.length
 }
 
 Stop.prototype.getTripCount = function () {
-  // console.log(this.trips)
   return this.tripCount
 }
 
 Stop.prototype.getAgencyCount = function () {
-  // console.log(this.agencies.length)
   return this.agencies.length
 }
 
 Stop.prototype.getTypeCount = function () {
-  // console.log(this.types.length)
   return this.types.length
 }
 

@@ -1,5 +1,4 @@
 var d3 = require('d3')
-var Hammer = require('hammerjs')
 
 function Starplot (data) {
   this.data = []
@@ -26,32 +25,6 @@ function Starplot (data) {
   }
   this.addDataSet(data.data, true)
   this.addLabel(this.label)
-
-  this.addEventHandler()
-}
-
-Starplot.prototype.addEventHandler = function () {
-  document.querySelector('#stop-' + this.id).addEventListener('click', function () {
-
-    if (this.className === 'active star-plot') {
-      this.className = 'star-plot'
-    } else if (this.className !== 'active star-plot') {
-      this.className = 'active star-plot'
-    }
-
-    var dataSet = '#' + this.id + ' .data-set-0'
-    var path = document.querySelector(dataSet).getAttribute('d')
-
-    if (!this.clicked) {
-      d3.select('.plot svg').append('path')
-        .attr('class', 'data-set ' + this.id)
-        .attr('d', path)
-      this.clicked = true
-    } else if (this.clicked) {
-      d3.select('.' + this.id).remove()
-      this.clicked = false
-    }
-  }, false)
 }
 
 Starplot.prototype.draw = function (e, id) {

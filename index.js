@@ -3,13 +3,14 @@ var domready = require('domready')
 var Starplot = require('./starplot')
 var getJSON = require('./getJSON')
 var generateStops = require('./generateStops')
+var StopList = require('./stopList')
 var Filter = require('./filter')
 
 var agenciesRaw = []
 var stopsRaw = []
 var routesRaw = []
 
-var stops = []
+var stop = []
 
 getJSON('./data/agency.json', function (data) {
   agenciesRaw = data
@@ -27,7 +28,7 @@ getJSON('./data/agency.json', function (data) {
     getJSON('./data/routes.json', function (data) {
       routesRaw = data
 
-      stops = generateStops(stopsRaw, routesRaw)
+      stop = generateStops(stopsRaw, routesRaw)
       var filter = new Filter()
 
       document.querySelector('.vbb').addEventListener('change', function () {
@@ -42,23 +43,37 @@ getJSON('./data/agency.json', function (data) {
         var searchResult = []
         if (this.value.length > 2) {
           // console.log(this.value)
-          searchResult = filter.searchStopList(stops, this.value)
+          searchResult = filter.searchStopList(stop, this.value)
         }
         filter.renderSearchResults(searchResult)
       }, false)
 
       // document.querySelector('')
 
-      stops[0].getStopData()
-      stops[115].drawStarplot()
-      stops[200].drawStarplot()
-      stops[300].drawStarplot()
-      stops[400].drawStarplot()
-      stops[500].drawStarplot()
-      stops[600].drawStarplot()
-      stops[700].drawStarplot()
-      stops[800].drawStarplot()
-      stops[900].drawStarplot()
+      var visibleStops = new StopList([
+        stop[115],
+        stop[200],
+        stop[300],
+        stop[400],
+        stop[500],
+        stop[600],
+        stop[700],
+        stop[800],
+        stop[900]
+      ])
+
+      visibleStops.removeStop(stop[200])
+
+      stop[0].getStopData()
+      // console.log(stops[115])
+      // stops[200].drawStarplot()
+      // stops[300].drawStarplot()
+      // stops[400].drawStarplot()
+      // stops[500].drawStarplot()
+      // stops[600].drawStarplot()
+      // stops[700].drawStarplot()
+      // stops[800].drawStarplot()
+      // stops[900].drawStarplot()
 
       document.querySelector('#show-filter').addEventListener('click', function () {
         var header = document.querySelector('header')
