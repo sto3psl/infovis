@@ -24,7 +24,6 @@ Filter.prototype.renderList = function (e, list) {
     var name = 'del-' + i
     var value = document.querySelector('span.del-' + i)
 
-    
     // document.querySelector(elementName).addEventListener('click', this.removeFromList.bind(this), false)
   }
 }
@@ -46,7 +45,7 @@ Filter.prototype.removeFromList = function () {
 Filter.prototype.searchStopList = function (stops, name) {
   var result = []
   for (var i = 0; i < stops.length; i++) {
-    if (name === stops[i].name) {
+    if (stops[i].name.toLowerCase().indexOf(name.toLowerCase()) > -1) {
       result.push(stops[i])
     }
   }
@@ -54,18 +53,23 @@ Filter.prototype.searchStopList = function (stops, name) {
   return result
 }
 
-Filter.prototype.renderSearchResults = function (results) {
+Filter.prototype.renderSearchResults = function (results, callback) {
   // console.log(results)
 
-  if (this.agencyList[0] !== undefined) {
-    
-  }
   var element = document.querySelector('#search-results')
   element.innerHTML = '<li>Suchergebnisse</li>'
   for (var i = 0; i < results.length; i++) {
     var li = document.createElement('li')
-    li.innerHTML = '<span class="' + results[i].id + '">' + results[i].name + '</span>'
+    li.innerHTML = '<button class="' + results[i].id + '">' + results[i].name + '</button>'
     element.appendChild(li)
+  }
+
+  var searchResults = document.querySelectorAll('#search-results button')
+  for (i = 0; i < searchResults.length; i++) {
+    searchResults[i].addEventListener('click', function () {
+      console.log(this.className)
+      callback(this.className)
+    }, false)
   }
 
   // console.log(element)

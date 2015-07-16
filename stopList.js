@@ -13,13 +13,21 @@ function StopList (stops) {
 }
 
 StopList.prototype.draw = function () {
+  document.querySelector('.small-plots').innerHTML = '<div class="details"></div>'
+
   for (var i = 0; i < this.data.length; i++) {
     this.data[i].drawStarplot()
   }
 }
 
 StopList.prototype.addStop = function (stop) {
-  this.data.push(stop)
+  if (this.data.length < 9) {
+    this.data.push(stop)
+
+    this.draw()
+  } else {
+    window.alert('You can only select 9 Stops at once.')
+  }
 }
 
 StopList.prototype.removeStop = function (stop) {
@@ -27,7 +35,6 @@ StopList.prototype.removeStop = function (stop) {
   console.log(this.data.indexOf(stop))
   this.data.splice(index, 1)
   console.log(this.data)
-  document.querySelector('.small-plots').innerHTML = '<div class="details"></div>'
 
   this.draw()
 }
