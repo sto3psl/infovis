@@ -60,6 +60,7 @@ Stop.prototype.drawStarplot = function () {
 
   this.hammertime = new Hammer(document.querySelector('#stop-' + this.id))
   this.addTouchEvent(this, 'doubletap', this.showDetails)
+  this.addTouchEvent(this, '')
 }
 
 Stop.prototype.setTypes = function () {

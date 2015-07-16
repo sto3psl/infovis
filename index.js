@@ -106,6 +106,17 @@ domready(function () {
     selector: '.plot'
   })
 
+  var filterInput = document.querySelectorAll('input, select')
+
+  for (var i = 0; i < filterInput.length; i++) {
+    filterInput[i].addEventListener('focus', function () {
+      var header = document.querySelector('header')
+      var button = document.querySelector('#show-filter img')
+
+      header.className = 'expanded'
+      button.className = 'rotated'
+    }, false)
+  }
   // plot3.click()
 
   // var smallPlots = document.querySelectorAll('.small-plots div')
