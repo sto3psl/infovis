@@ -15,6 +15,10 @@ text {
   stroke: var(--grey) !important;
 }
 
+.plot .star-plot path[class*="data-set"] {
+  fill-opacity: 0.5;
+}
+
 .star-plot {
   display: block;
   border: 2px solid white;
@@ -25,7 +29,7 @@ text {
   stroke: var(--dark-grey);
 }
 
-.active-0 svg path {
+.active svg path {
   fill: var(--red);
   stroke: var(--red);
 }

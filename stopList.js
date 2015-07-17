@@ -1,5 +1,6 @@
 function StopList (stops) {
   this.data = []
+  this.activeElements = 0
 
   if (stops.constructor === Array) {
     for (var i = 0; i < stops.length; i++) {
@@ -17,6 +18,12 @@ StopList.prototype.draw = function () {
 
   for (var i = 0; i < this.data.length; i++) {
     this.data[i].drawStarplot()
+    document.querySelector('#stop-' + this.data[i].id).addEventListener('click', function () {
+      this.className += ' active'
+      var path = this.childNodes[0].childNodes[0].cloneNode()
+      var bigPlot = document.querySelector('.plot .star-plot svg')
+      bigPlot.appendChild(path)
+    }, false)
   }
 }
 

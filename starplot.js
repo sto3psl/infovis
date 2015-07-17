@@ -70,8 +70,6 @@ Starplot.prototype.drawAxes = function (data) {
       return 'line-' + data.indexOf(d)
     })
 
-    console.log(data)
-
   d3.select('.axes').append('image')
     .attr('xlink:href', 'assets/Fahrten_Icon.svg')
     .attr('x', 0)
