@@ -15,8 +15,10 @@ text {
   stroke: var(--grey) !important;
 }
 
-.plot .star-plot path[class*="data-set"] {
+.plot .star-plot .data-set-0 {
   fill-opacity: 0.5;
+  fill: var(--red);
+
 }
 
 .star-plot {
