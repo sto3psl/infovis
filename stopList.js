@@ -17,19 +17,33 @@ StopList.prototype.setActivePlot = function (obj, event) {
 }
 
 StopList.prototype.increaseActiveElements = function () {
-  var path = this.childNodes[0].childNodes[0].cloneNode()
+  var path = this.childNodes[0].childNodes[0]
+  var newPath = path.cloneNode()
   var bigPlot = document.querySelector('.plot .star-plot svg')
-  // var activePlots = document.querySelectorAll('.small-plots .active')
 
-  if (this.classList[1] === 'active') {
-    this.className = 'star-plot'
+  this.classList.toggle('active')
+  // var activePlots = document.querySelectorAll('.small-plots .active')
+  if (this.classList[1] !== 'active') {
+    // this.className = 'star-plot'
     var d = document.querySelector('.' + this.id)
     bigPlot.removeChild(d)
+    path.classList.remove(path.classList[1])
+
   } else {
-    this.className += ' active'
-    var appended = bigPlot.appendChild(path)
+    // this.className += ' active'
+    var appended = bigPlot.appendChild(newPath)
     appended.classList.add(this.id)
+
+    var smallActivePlots = document.querySelectorAll('.small-plots .active svg path')
+    var bigActivePlots = document.querySelectorAll('path[class*="stop-"]')
+    for (var i = 0; i < bigActivePlots.length; i++) {
+      smallActivePlots[i].classList.add('active-' + i)
+      bigActivePlots[i].classList.add('active-' + i)
+    }
+    
   }
+  console.log(path.classList)
+
 
 // for (var i = 0; i < activePlots.length; i++) {
 //   activePlots[i].className = 'star-plot active active-' + i
