@@ -10,6 +10,10 @@ text {
   stroke: var(--dark-grey);
 }
 
+.axes image:hover {
+  cursor: pointer;
+}
+
 .scale {
   fill: transparent !important;
   stroke: var(--grey) !important;
