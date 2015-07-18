@@ -133,6 +133,12 @@ footer li {
   border: none;
 }
 
+footer img {
+  height: 1.8em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 
 
 
