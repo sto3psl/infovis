@@ -63,7 +63,6 @@ getJSON('./data/agency.json', function (data) {
       }, false)
 
       document.querySelector('#search-results').addEventListener('click', function (evt) {
-        console.log(evt.target.dataset.id)
         for (var i = 0; i < stop.length; i++) {
           if (stop[i].id === evt.target.dataset.id) {
             visibleStops.addStop(stop[i])
@@ -71,17 +70,7 @@ getJSON('./data/agency.json', function (data) {
         };
       }, false)
 
-      // document.querySelector('')
       stop[0].getStopData()
-      // console.log(stops[115])
-      // stops[200].drawStarplot()
-      // stops[300].drawStarplot()
-      // stops[400].drawStarplot()
-      // stops[500].drawStarplot()
-      // stops[600].drawStarplot()
-      // stops[700].drawStarplot()
-      // stops[800].drawStarplot()
-      // stops[900].drawStarplot()
 
       document.querySelector('#show-filter').addEventListener('click', function () {
         var header = document.querySelector('header')

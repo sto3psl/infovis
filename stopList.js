@@ -22,15 +22,12 @@ StopList.prototype.increaseActiveElements = function () {
   var bigPlot = document.querySelector('.plot .star-plot svg')
 
   this.classList.toggle('active')
-  // var activePlots = document.querySelectorAll('.small-plots .active')
   if (this.classList[1] !== 'active') {
-    // this.className = 'star-plot'
     var d = document.querySelector('.' + this.id)
     bigPlot.removeChild(d)
     path.classList.remove(path.classList[1])
 
   } else {
-    // this.className += ' active'
     var appended = bigPlot.appendChild(newPath)
     appended.classList.add(this.id)
 
@@ -40,15 +37,8 @@ StopList.prototype.increaseActiveElements = function () {
       smallActivePlots[i].classList.add('active-' + i)
       bigActivePlots[i].classList.add('active-' + i)
     }
-    
   }
   console.log(path.classList)
-
-
-// for (var i = 0; i < activePlots.length; i++) {
-//   activePlots[i].className = 'star-plot active active-' + i
-// }
-// console.log(activePlots)
 }
 
 StopList.prototype.draw = function () {
