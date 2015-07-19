@@ -54,6 +54,7 @@ text {
   display: flex;
   position: relative;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .small-plots .star-plot {

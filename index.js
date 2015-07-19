@@ -62,6 +62,15 @@ getJSON('./data/agency.json', function (data) {
         })
       }, false)
 
+      document.querySelector('#search-results').addEventListener('click', function (evt) {
+        console.log(evt.target.dataset.id)
+        for (var i = 0; i < stop.length; i++) {
+          if (stop[i].id === evt.target.dataset.id) {
+            visibleStops.addStop(stop[i])
+          }
+        };
+      }, false)
+
       // document.querySelector('')
       stop[0].getStopData()
       // console.log(stops[115])
@@ -118,15 +127,4 @@ domready(function () {
       button.className = 'rotated'
     }, false)
   }
-  // plot3.click()
-
-  // var smallPlots = document.querySelectorAll('.small-plots div')
-  // console.log(smallPlots)
-
-// for (var i = 0; i < smallPlots.length; i++) {
-//   smallPlots[i].addEventListener('click', function () {
-//     console.log(this)
-//     this.className += ' active'
-//   }, false)
-// }
 })

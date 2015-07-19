@@ -20,11 +20,11 @@ Filter.prototype.renderList = function (e, list) {
     li.innerHTML = '<button class="delete del-' + i + '">x</button>' + '<span class="del-' + i + '">' + list[i] + '</span>'
     element.appendChild(li)
 
-    var elementName = e + ' button.del-' + i
-    var name = 'del-' + i
-    var value = document.querySelector('span.del-' + i)
+    // var elementName = e + ' button.del-' + i
+    // var name = 'del-' + i
+    // var value = document.querySelector('span.del-' + i)
 
-    // document.querySelector(elementName).addEventListener('click', this.removeFromList.bind(this), false)
+  // document.querySelector(elementName).addEventListener('click', this.removeFromList.bind(this), false)
   }
 }
 
@@ -57,22 +57,14 @@ Filter.prototype.renderSearchResults = function (results, callback) {
   // console.log(results)
 
   var element = document.querySelector('#search-results')
-  element.innerHTML = '<li>Suchergebnisse</li>'
+  element.innerHTML = ''
   for (var i = 0; i < results.length; i++) {
     var li = document.createElement('li')
-    li.innerHTML = '<button class="' + results[i].id + '">' + results[i].name + '</button>'
+    li.innerHTML = '<button data-id="' + results[i].id + '">' + results[i].name + '</button>'
     element.appendChild(li)
   }
 
-  var searchResults = document.querySelectorAll('#search-results button')
-  for (i = 0; i < searchResults.length; i++) {
-    searchResults[i].addEventListener('click', function () {
-      console.log(this.className)
-      callback(this.className)
-    }, false)
-  }
-
-  // console.log(element)
+// console.log(element)
 }
 
 module.exports = Filter
