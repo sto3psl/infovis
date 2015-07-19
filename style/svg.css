@@ -10,9 +10,19 @@ text {
   stroke: var(--dark-grey);
 }
 
+.axes image:hover {
+  cursor: pointer;
+}
+
 .scale {
   fill: transparent !important;
   stroke: var(--grey) !important;
+}
+
+.plot .star-plot .data-set-0 {
+  fill-opacity: 0.5;
+  fill: var(--red);
+
 }
 
 .star-plot {
@@ -20,30 +30,31 @@ text {
   border: 2px solid white;
 }
 
-.data-set {
-  fill: color(var(--dark-grey) a(50%));
+.small-plots svg path {
+  fill: var(--dark-grey);
   stroke: var(--dark-grey);
 }
 
-.data-set:nth-of-type(1) {
-  fill: color(var(--red) a(70%));
-  stroke: var(--red);
+.active-0 {
+  fill: var(--red) !important;
+  stroke: var(--red) !important;
 }
 
-.data-set:nth-of-type(2) {
-  fill: color(var(--blue) a(70%));
-  stroke: var(--blue);
+.active-1 {
+  fill: var(--blue) !important;
+  stroke: var(--blue) !important;
 }
 
-.data-set:nth-of-type(3) {
-  fill: color(var(--green) a(70%));
-  stroke: var(--green);
+.active-2 {
+  fill: var(--green) !important;
+  stroke: var(--green) !important;
 }
 
 .small-plots {
   display: flex;
   position: relative;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .small-plots .star-plot {
@@ -51,11 +62,15 @@ text {
   width: calc(100% / 3);
 }
 
-.small-plots .star-plot:hover {
+.small-plots .star-plot:hover svg{
   cursor: pointer;
+  /*background: color(var(--light-grey) l(90%));*/
 }
 
-.small-plots path {
-  fill: var(--dark-grey);
-  stroke: var(--dark-grey);
+.remove {
+  background: color(var(--red) l(50%));
+}
+
+.remove path {
+  fill: color(var(--red) l(30%)) !important;
 }

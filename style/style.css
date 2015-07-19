@@ -32,17 +32,50 @@ header {
   z-index: 100;
 }
 
+header p {
+  display: none;
+}
+
+header.expanded p {
+  display: block;
+  margin: calc(var(--space) * 2);
+  color: color(var(--blue) l(30%));
+  border-bottom: 1px solid var(--grey);
+}
+
 header.expanded {
   height: 50vh;
 }
 
 header.expanded ul {
   display: block;
+  height: 80%;
+  max-width: 18vw;
+  overflow-y: scroll;
 }
 
 .wrap {
   display: flex;
+  height: 100%;
   justify-content: center;
+}
+
+header div {
+  height: 100%;
+}
+
+#search-results {
+  height: 80%;
+  width: 20vw;
+  overflow-y: scroll;
+}
+
+#search-results button {
+  color: var(--font-color);
+}
+
+#search-results button:hover {
+  color: var(--red);
 }
 
 header ul {
@@ -71,6 +104,7 @@ header button {
   background: none;
   color: var(--red);
   padding: var(--padding-lr);
+  text-align: left;
 }
 
 input,
@@ -81,7 +115,11 @@ select {
   padding: var(--padding-lr);
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
+}
+
+select:hover {
+  cursor: pointer;
 }
 
 ul {
@@ -91,6 +129,7 @@ ul {
 
 li {
   border-bottom: 1px solid var(--grey);
+  padding: var(--space) 0;
 }
 
 /*
@@ -100,11 +139,14 @@ li {
 main {
   display: flex;
   justify-content: center;
+  min-width: 1024px;
+  max-width: 80vw;
+  margin: 0 auto;
 }
 
-main div {
-  height: 70vh;
-  width: 70vh;
+.plot, .small-plots {
+  height: 50%;
+  width: 50%;
 }
 
 .plot,
@@ -133,7 +175,8 @@ footer li {
   border: none;
 }
 
-
-
-
-
+footer img {
+  height: 1.8em;
+  display: inline-block;
+  vertical-align: middle;
+}

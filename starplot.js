@@ -1,14 +1,13 @@
 var d3 = require('d3')
-var Hammer = require('hammerjs')
 
 function Starplot (data) {
   this.data = []
   this.label = data.label
   this.selector = data.selector
-  this.width = 200
-  this.height = 200
-  this.centerX = -100
-  this.centerY = -105
+  this.width = 220
+  this.height = 220
+  this.centerX = -110
+  this.centerY = -110
   this.id = data.id
   this.clicked = false
 
@@ -26,32 +25,6 @@ function Starplot (data) {
   }
   this.addDataSet(data.data, true)
   this.addLabel(this.label)
-
-  this.addEventHandler()
-}
-
-Starplot.prototype.addEventHandler = function () {
-  document.querySelector('#stop-' + this.id).addEventListener('click', function () {
-
-    if (this.className === 'active star-plot') {
-      this.className = 'star-plot'
-    } else if (this.className !== 'active star-plot') {
-      this.className = 'active star-plot'
-    }
-
-    var dataSet = '#' + this.id + ' .data-set-0'
-    var path = document.querySelector(dataSet).getAttribute('d')
-
-    if (!this.clicked) {
-      d3.select('.plot svg').append('path')
-        .attr('class', 'data-set ' + this.id)
-        .attr('d', path)
-      this.clicked = true
-    } else if (this.clicked) {
-      d3.select('.' + this.id).remove()
-      this.clicked = false
-    }
-  }, false)
 }
 
 Starplot.prototype.draw = function (e, id) {
@@ -79,13 +52,20 @@ Starplot.prototype.addLabel = function (label) {
 
 Starplot.prototype.drawAxes = function (data) {
   var i = 0
+  var icons = [
+    'assets/Fahrten_Icon.svg',
+    'assets/Durchschnitt_Icon.svg',
+    'assets/Linie_Icon.svg',
+    'assets/Verbuende_Icon.svg',
+    'assets/Typen_Icon.svg'
+  ]
 
-  this.svgContainer.insert('g', 'path').attr('class', 'axes').selectAll('line')
+  var axes = this.svgContainer.insert('g', 'path').attr('class', 'axes').selectAll('line')
     .data(data)
     .enter().append('line')
     .attr('x1', 0)
     .attr('y1', 0)
-    .attr('x2', 100)
+    .attr('x2', 90)
     .attr('y2', 0)
     .attr('stroke-linecap', 'round')
     .attr('transform', function (d) {
@@ -97,43 +77,22 @@ Starplot.prototype.drawAxes = function (data) {
       return 'line-' + data.indexOf(d)
     })
 
-    console.log(data)
-
-  d3.select('.axes').append('image')
-    .attr('xlink:href', 'assets/Fahrten_Icon.svg')
-    .attr('x', 0)
-    .attr('y', -105)
+  var iconCoords = this.dataConvert([100,100,100,100,100])
+  d3.select('.axes').selectAll('image')
+    .data(icons)
+    .enter().append('image')
+    .attr('xlink:href', function (d) {
+      return d
+    })
+    .attr('x', function (d, i) {
+      return iconCoords[i].x -10
+    })
+    .attr('y', function (d, i) {
+      return iconCoords[i].y -10
+    })
     .attr('width', '20px')
     .attr('height', '20px')
-
-  d3.select('.axes').append('image')
-    .attr('xlink:href', 'assets/Durchschnitt_Icon.svg')
-    .attr('x', 83)
-    .attr('y', -30)
-    .attr('width', '18px')
-    .attr('height', '18px')
-
-  d3.select('.axes').append('image')
-    .attr('xlink:href', 'assets/Linie_Icon.svg')
-    .attr('x', 40)
-    .attr('y', 75)
-    .attr('width', '18px')
-    .attr('height', '18px')
-
-  d3.select('.axes').append('image')
-    .attr('xlink:href', 'assets/Verbuende_Icon.svg')
-    .attr('x', -58)
-    .attr('y', 73)
-    .attr('width', '20px')
-    .attr('height', '20px')
-
-  d3.select('.axes').append('image')
-    .attr('xlink:href', 'assets/Typen_Icon.svg')
-    .attr('x', -102)
-    .attr('y', -30)
-    .attr('width', '20px')
-    .attr('height', '20px')
-
+   
   return Starplot
 }
 
@@ -143,6 +102,21 @@ Starplot.prototype.addAxisScale = function () {
   for (var i = 0; i < 10; i++) {
     this.addDataSet([10 * i, 10 * i, 10 * i, 10 * i, 10 * i], false)
   }
+}
+
+Starplot.prototype.dataConvert = function (d) {
+  var results = []
+  var data = d
+
+  for (var i = 0; i < data.length; i++) {
+    var coords = {}
+
+    coords.x = 0 - data[i] * Math.cos((90 + (360 / data.length) * i) / 180 * Math.PI)
+    coords.y = 0 - data[i] * Math.sin((90 + (360 / data.length) * i) / 180 * Math.PI)
+
+    results[i] = coords
+  }
+  return results
 }
 
 Starplot.prototype.addDataSet = function (d, push) {
@@ -155,22 +129,7 @@ Starplot.prototype.addDataSet = function (d, push) {
   }
   var count = this.dataSetCount
 
-  var dataConvert = function (d) {
-    var results = []
-    var data = d
-
-    for (var i = 0; i < data.length; i++) {
-      var coords = {}
-
-      coords.x = 0 - data[i] * Math.cos((90 + (360 / data.length) * i) / 180 * Math.PI)
-      coords.y = 0 - data[i] * Math.sin((90 + (360 / data.length) * i) / 180 * Math.PI)
-
-      results[i] = coords
-    }
-    return results
-  }
-
-  var lineData = dataConvert(d)
+  var lineData = this.dataConvert(d)
 
   var lineFunction = d3.svg.line()
     .x(function (d) {

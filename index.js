@@ -3,13 +3,14 @@ var domready = require('domready')
 var Starplot = require('./starplot')
 var getJSON = require('./getJSON')
 var generateStops = require('./generateStops')
+var StopList = require('./stopList')
 var Filter = require('./filter')
 
 var agenciesRaw = []
 var stopsRaw = []
 var routesRaw = []
 
-var stops = []
+var stop = []
 
 getJSON('./data/agency.json', function (data) {
   agenciesRaw = data
@@ -27,8 +28,14 @@ getJSON('./data/agency.json', function (data) {
     getJSON('./data/routes.json', function (data) {
       routesRaw = data
 
-      stops = generateStops(stopsRaw, routesRaw)
+      stop = generateStops(stopsRaw, routesRaw)
       var filter = new Filter()
+
+      var visibleStops = new StopList([
+        stop[115],
+        stop[200],
+        stop[300]
+      ])
 
       document.querySelector('.vbb').addEventListener('change', function () {
         filter.addToAgencyList(document.querySelector('.vbb').value)
@@ -41,24 +48,29 @@ getJSON('./data/agency.json', function (data) {
       document.querySelector('#search').addEventListener('input', function () {
         var searchResult = []
         if (this.value.length > 2) {
-          // console.log(this.value)
-          searchResult = filter.searchStopList(stops, this.value)
+          searchResult = filter.searchStopList(stop, this.value)
+          console.log(searchResult)
         }
-        filter.renderSearchResults(searchResult)
+
+        filter.renderSearchResults(searchResult, function (result) {
+          for (var i = 0; i < stop.length; i++) {
+            if (stop[i].id === result) {
+              console.log(stop[i])
+              visibleStops.addStop(stop[i])
+            }
+          }
+        })
       }, false)
 
-      // document.querySelector('')
+      document.querySelector('#search-results').addEventListener('click', function (evt) {
+        for (var i = 0; i < stop.length; i++) {
+          if (stop[i].id === evt.target.dataset.id) {
+            visibleStops.addStop(stop[i])
+          }
+        };
+      }, false)
 
-      stops[0].getStopData()
-      stops[115].drawStarplot()
-      stops[200].drawStarplot()
-      stops[300].drawStarplot()
-      stops[400].drawStarplot()
-      stops[500].drawStarplot()
-      stops[600].drawStarplot()
-      stops[700].drawStarplot()
-      stops[800].drawStarplot()
-      stops[900].drawStarplot()
+      stop[0].getStopData()
 
       document.querySelector('#show-filter').addEventListener('click', function () {
         var header = document.querySelector('header')
@@ -93,15 +105,15 @@ domready(function () {
     selector: '.plot'
   })
 
-  // plot3.click()
+  var filterInput = document.querySelectorAll('input, select')
 
-  // var smallPlots = document.querySelectorAll('.small-plots div')
-  // console.log(smallPlots)
+  for (var i = 0; i < filterInput.length; i++) {
+    filterInput[i].addEventListener('focus', function () {
+      var header = document.querySelector('header')
+      var button = document.querySelector('#show-filter img')
 
-// for (var i = 0; i < smallPlots.length; i++) {
-//   smallPlots[i].addEventListener('click', function () {
-//     console.log(this)
-//     this.className += ' active'
-//   }, false)
-// }
+      header.className = 'expanded'
+      button.className = 'rotated'
+    }, false)
+  }
 })
