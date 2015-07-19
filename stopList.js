@@ -19,13 +19,21 @@ function StopList (stops) {
 
   pressEvent.on('press', function (evt) {
     self.preventClick = true
-    console.log('press', self.preventClick)
+    var svg = evt.target
+    svg.classList.add('remove')
   }, false)
   pressEvent.on('pressup', function (evt) {
     setTimeout(function () {
       self.preventClick = false
     }, 0)
-    console.log('released')
+    var svg = evt.target
+    svg.classList.remove('remove')
+
+    for (var i = 0; i < self.data.length; i++) {
+      if (svg.parentNode.id === 'stop-' + self.data[i].id) {
+        self.removeStop(self.data[i])
+      }
+    }
   }, false)
 }
 

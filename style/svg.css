@@ -64,5 +64,13 @@ text {
 
 .small-plots .star-plot:hover svg{
   cursor: pointer;
-  background: color(var(--light-grey) l(90%));
+  /*background: color(var(--light-grey) l(90%));*/
+}
+
+.remove {
+  background: color(var(--red) l(50%));
+}
+
+.remove path {
+  fill: color(var(--red) l(30%)) !important;
 }
