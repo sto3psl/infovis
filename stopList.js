@@ -1,5 +1,9 @@
+var Hammer = require('hammerjs')
+
 function StopList (stops) {
+  var self = this
   this.data = []
+  this.preventClick = false
 
   if (stops.constructor === Array) {
     for (var i = 0; i < stops.length; i++) {
@@ -10,26 +14,44 @@ function StopList (stops) {
   if (this.data.length > 1) {
     this.draw()
   }
+
+  var pressEvent = new Hammer(document.querySelector('.small-plots'))
+
+  pressEvent.on('press', function (evt) {
+    self.preventClick = true
+    console.log('press', self.preventClick)
+  }, false)
+  pressEvent.on('pressup', function (evt) {
+    setTimeout(function () {
+      self.preventClick = false
+    }, 0)
+    console.log('released')
+  }, false)
 }
 
 StopList.prototype.setActivePlot = function (obj, event) {
-  document.querySelector(obj).addEventListener(event, this.increaseActiveElements, false)
+  document.querySelector(obj).addEventListener(event, this.increaseActiveElements.bind(this), false)
 }
 
-StopList.prototype.increaseActiveElements = function () {
-  var path = this.childNodes[0].childNodes[0]
+StopList.prototype.increaseActiveElements = function (event) {
+  console.log('click', this.preventClick)
+  if (this.preventClick) return
+  var el = event.target
+
+  var path = el.tagName !== 'path' ? el.querySelector('path') : el
+  var div = path.parentNode.parentNode
   var newPath = path.cloneNode()
   var bigPlot = document.querySelector('.plot .star-plot svg')
 
-  this.classList.toggle('active')
-  if (this.classList[1] !== 'active') {
-    var d = document.querySelector('.' + this.id)
+  div.classList.toggle('active')
+  if (div.classList[1] !== 'active') {
+    var d = document.querySelector('.' + div.id)
     bigPlot.removeChild(d)
     path.classList.remove(path.classList[1])
 
   } else {
     var appended = bigPlot.appendChild(newPath)
-    appended.classList.add(this.id)
+    appended.classList.add(div.id)
 
     var smallActivePlots = document.querySelectorAll('.small-plots .active svg path')
     var bigActivePlots = document.querySelectorAll('path[class*="stop-"]')
