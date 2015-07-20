@@ -12,6 +12,8 @@ var routesRaw = []
 
 var stop = []
 
+var plot
+
 getJSON('./data/agency.json', function (data) {
   agenciesRaw = data
 
@@ -49,13 +51,11 @@ getJSON('./data/agency.json', function (data) {
         var searchResult = []
         if (this.value.length > 2) {
           searchResult = filter.searchStopList(stop, this.value)
-          console.log(searchResult)
         }
 
         filter.renderSearchResults(searchResult, function (result) {
           for (var i = 0; i < stop.length; i++) {
             if (stop[i].id === result) {
-              console.log(stop[i])
               visibleStops.addStop(stop[i])
             }
           }
@@ -67,7 +67,7 @@ getJSON('./data/agency.json', function (data) {
           if (stop[i].id === evt.target.dataset.id) {
             visibleStops.addStop(stop[i])
           }
-        };
+        }
       }, false)
 
       stop[0].getStopData()
@@ -84,6 +84,78 @@ getJSON('./data/agency.json', function (data) {
           button.className = 'rotated'
         }
       }, false)
+
+      var bigPlot = document.querySelector('.plot svg')
+
+      bigPlot.addEventListener('click', function (evt) {
+        var p = document.querySelectorAll('.active p')
+        for (var i = 0; i < p.length; i++) {
+          p[i].innerHTML = ''
+        }
+
+        var highlight = document.querySelectorAll('.highlight')
+        for (i = 0; i < highlight.length; i++) {
+          highlight[i].classList.remove('highlight')
+        }
+
+        var axis = evt.target.getAttribute('href')
+        console.log(axis)
+        var activePlots = document.querySelectorAll('.active')
+        console.log(activePlots)
+        var activeStops = []
+        for (i = 0; i < visibleStops.data.length; i++) {
+          for (var j = 0; j < activePlots.length; j++) {
+            if ('stop-' + visibleStops.data[i].id === activePlots[j].id) {
+              activeStops.push(visibleStops.data[i])
+            }
+          }
+        }
+
+        var axes = document.querySelectorAll('line')
+
+        switch (axis) {
+          case 'assets/Fahrten_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getTripCount()
+              activePlots[i].appendChild(value)
+            }
+            axes[0].classList.add('highlight')
+            break
+          case 'assets/Durchschnitt_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getAverageTripsPerRoute()
+              activePlots[i].appendChild(value)
+            }
+            axes[1].classList.add('highlight')
+            break
+          case 'assets/Linie_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getRouteCount()
+              activePlots[i].appendChild(value)
+            }
+            axes[2].classList.add('highlight')
+            break
+          case 'assets/Verbuende_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getAgencyCount()
+              activePlots[i].appendChild(value)
+            }
+            axes[3].classList.add('highlight')
+            break
+          case 'assets/Typen_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getTypeCount()
+              activePlots[i].appendChild(value)
+            }
+            axes[4].classList.add('highlight')
+            break
+        }
+      })
     })
   })
 })
@@ -100,7 +172,7 @@ domready(function () {
     }
   }, false)
   // here comes Code which doesnt need the data
-  var plot = new Starplot({
+  plot = new Starplot({
     data: [0, 0, 0, 0, 0],
     selector: '.plot'
   })

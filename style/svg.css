@@ -14,13 +14,18 @@ text {
   cursor: pointer;
 }
 
+.highlight {
+  /*stroke: var(--green);*/
+  stroke-width: 4px;
+}
+
 .scale {
   fill: transparent !important;
-  stroke: var(--grey) !important;
+  stroke: var(--dark-grey) !important;
 }
 
 .plot .star-plot .data-set-0 {
-  fill-opacity: 0.5;
+  fill-opacity: 0.7;
   fill: var(--red);
 
 }
@@ -33,6 +38,17 @@ text {
 .small-plots svg path {
   fill: var(--dark-grey);
   stroke: var(--dark-grey);
+}
+
+.active {
+  position: relative;
+}
+
+.active p {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-size: 2em;
 }
 
 .active-0 {
@@ -58,6 +74,7 @@ text {
 }
 
 .small-plots .star-plot {
+  display: inline-block;
   height: calc(100% / 3);
   width: calc(100% / 3);
 }

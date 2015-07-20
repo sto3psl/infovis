@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   padding: 0 calc(var(--space) * 3) 0 calc(var(--space) * 3);
+  z-index: 1;
 }
 
 .details h2 {

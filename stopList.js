@@ -42,7 +42,6 @@ StopList.prototype.setActivePlot = function (obj, event) {
 }
 
 StopList.prototype.increaseActiveElements = function (event) {
-  console.log('click', this.preventClick)
   if (this.preventClick) return
   var el = event.target
 
@@ -68,7 +67,6 @@ StopList.prototype.increaseActiveElements = function (event) {
       bigActivePlots[i].classList.add('active-' + i)
     }
   }
-  console.log(path.classList)
 }
 
 StopList.prototype.draw = function () {
@@ -92,9 +90,7 @@ StopList.prototype.addStop = function (stop) {
 
 StopList.prototype.removeStop = function (stop) {
   var index = this.data.indexOf(stop)
-  console.log(this.data.indexOf(stop))
   this.data.splice(index, 1)
-  console.log(this.data)
 
   this.draw()
 }
