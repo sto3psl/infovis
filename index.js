@@ -36,12 +36,6 @@ getJSON('./data/agency.json', function (data) {
       var visibleStops = new StopList([
         stop[115],
         stop[200],
-        stop[300],
-        stop[115],
-        stop[200],
-        stop[300],
-        stop[115],
-        stop[200],
         stop[300]
       ])
 
@@ -57,13 +51,11 @@ getJSON('./data/agency.json', function (data) {
         var searchResult = []
         if (this.value.length > 2) {
           searchResult = filter.searchStopList(stop, this.value)
-          console.log(searchResult)
         }
 
         filter.renderSearchResults(searchResult, function (result) {
           for (var i = 0; i < stop.length; i++) {
             if (stop[i].id === result) {
-              console.log(stop[i])
               visibleStops.addStop(stop[i])
             }
           }
@@ -94,7 +86,6 @@ getJSON('./data/agency.json', function (data) {
       }, false)
 
       var bigPlot = document.querySelector('.plot svg')
-      console.log(bigPlot)
 
       bigPlot.addEventListener('click', function (evt) {
         var p = document.querySelectorAll('.active p')
@@ -121,11 +112,9 @@ getJSON('./data/agency.json', function (data) {
         }
 
         var axes = document.querySelectorAll('line')
-        console.log(axes)
-        console.log(activeStops)
+
         switch (axis) {
           case 'assets/Fahrten_Icon.svg':
-            console.log(visibleStops.data[0])
             for (i = 0; i < activeStops.length; i++) {
               var value = document.createElement('p')
               value.innerHTML = activeStops[i].getTripCount()

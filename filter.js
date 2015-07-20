@@ -14,7 +14,6 @@ Filter.prototype.addToAgencyList = function (value) {
 Filter.prototype.renderList = function (e, list) {
   var element = document.querySelector(e)
   element.innerHTML = ''
-  console.log(e)
   for (var i = 0; i < list.length; i++) {
     var li = document.createElement('li')
     li.innerHTML = '<button class="delete del-' + i + '">x</button>' + '<span class="del-' + i + '">' + list[i] + '</span>'
@@ -25,13 +24,10 @@ Filter.prototype.renderList = function (e, list) {
 
 Filter.prototype.addToTypeList = function (value) {
   this.typeList.push(value)
-  console.log(this.typeList)
   this.renderList('#typeList', this.typeList)
 }
 
-Filter.prototype.getAgencyList = function () {
-  console.log(this.agencyList)
-}
+Filter.prototype.getAgencyList = function () {}
 
 Filter.prototype.removeFromList = function () {}
 
