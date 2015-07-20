@@ -35,6 +35,17 @@ text {
   stroke: var(--dark-grey);
 }
 
+.active {
+  position: relative;
+}
+
+.active p {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-size: 2em;
+}
+
 .active-0 {
   fill: var(--red) !important;
   stroke: var(--red) !important;

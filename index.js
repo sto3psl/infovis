@@ -12,6 +12,8 @@ var routesRaw = []
 
 var stop = []
 
+var plot
+
 getJSON('./data/agency.json', function (data) {
   agenciesRaw = data
 
@@ -67,7 +69,7 @@ getJSON('./data/agency.json', function (data) {
           if (stop[i].id === evt.target.dataset.id) {
             visibleStops.addStop(stop[i])
           }
-        };
+        }
       }, false)
 
       stop[0].getStopData()
@@ -84,6 +86,67 @@ getJSON('./data/agency.json', function (data) {
           button.className = 'rotated'
         }
       }, false)
+
+      var bigPlot = document.querySelector('.plot svg')
+      console.log(bigPlot)
+
+      bigPlot.addEventListener('click', function (evt) {
+        var p = document.querySelectorAll('.active p')
+        for (var i = 0; i < p.length; i++) {
+          p[i].innerHTML = ''
+        };
+        var axis = evt.target.getAttribute('href')
+        console.log(axis)
+        var activePlots = document.querySelectorAll('.active')
+        console.log(activePlots)
+        var activeStops = []
+        for (var i = 0; i < visibleStops.data.length; i++) {
+          for (var j = 0; j < activePlots.length; j++) {
+            if ('stop-' + visibleStops.data[i].id === activePlots[j].id) {
+              activeStops.push(visibleStops.data[i])
+            }
+          }
+        }
+        console.log(activeStops)
+        switch (axis) {
+          case 'assets/Fahrten_Icon.svg':
+            console.log(visibleStops.data[0])
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getTripCount()
+              activePlots[i].appendChild(value)
+            }
+            break
+          case 'assets/Durchschnitt_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getAverageTripsPerRoute()
+              activePlots[i].appendChild(value)
+            }
+            break
+          case 'assets/Linie_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getRouteCount()
+              activePlots[i].appendChild(value)
+            }
+            break
+          case 'assets/Verbuende_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getAgencyCount()
+              activePlots[i].appendChild(value)
+            }
+            break
+          case 'assets/Typen_Icon.svg':
+            for (i = 0; i < activeStops.length; i++) {
+              var value = document.createElement('p')
+              value.innerHTML = activeStops[i].getTypeCount()
+              activePlots[i].appendChild(value)
+            }
+            break
+        }
+      })
     })
   })
 })
@@ -100,7 +163,7 @@ domready(function () {
     }
   }, false)
   // here comes Code which doesnt need the data
-  var plot = new Starplot({
+  plot = new Starplot({
     data: [0, 0, 0, 0, 0],
     selector: '.plot'
   })

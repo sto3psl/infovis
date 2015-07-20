@@ -1,6 +1,7 @@
 var d3 = require('d3')
 
 function Starplot (data) {
+  var self = this
   this.data = []
   this.label = data.label
   this.selector = data.selector
@@ -77,7 +78,7 @@ Starplot.prototype.drawAxes = function (data) {
       return 'line-' + data.indexOf(d)
     })
 
-  var iconCoords = this.dataConvert([100,100,100,100,100])
+  var iconCoords = this.dataConvert([100, 100, 100, 100, 100])
   d3.select('.axes').selectAll('image')
     .data(icons)
     .enter().append('image')
@@ -85,16 +86,25 @@ Starplot.prototype.drawAxes = function (data) {
       return d
     })
     .attr('x', function (d, i) {
-      return iconCoords[i].x -10
+      return iconCoords[i].x - 10
     })
     .attr('y', function (d, i) {
-      return iconCoords[i].y -10
+      return iconCoords[i].y - 10
     })
     .attr('width', '20px')
     .attr('height', '20px')
-   
+    // .on('click', function (axis) {
+    //   var el = this
+    //   Starplot.showAxisValues(el)
+    // })
   return Starplot
 }
+
+// Starplot.showAxisValues = function (el) {
+//   console.log(el)
+//   var smallPlots = document.querySelectorAll('.small-plots .star-plot')
+//   console.log(smallPlots)
+// }
 
 Starplot.prototype.addAxisScale = function () {
   var data = this.data[1]
