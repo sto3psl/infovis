@@ -34,9 +34,15 @@ getJSON('./data/agency.json', function (data) {
       var filter = new Filter()
 
       var visibleStops = new StopList([
-        stop[115],
-        stop[200],
-        stop[300]
+        stop[100],
+        stop[300],
+        stop[600],
+        stop[900],
+        stop[1200],
+        stop[1500],
+        stop[1800],
+        stop[2100],
+        stop[2400]
       ])
 
       document.querySelector('.vbb').addEventListener('change', function () {
