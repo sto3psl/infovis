@@ -142,11 +142,13 @@ main {
 /*  min-width: 1024px;
   max-width: 80vw;*/
   margin: 0 auto;
+  max-width: 1024px
 }
 
 .plot, .small-plots {
   height: 50vw;
   width: 50vw;
+  max-height: 512px;
 }
 
 .plot,
