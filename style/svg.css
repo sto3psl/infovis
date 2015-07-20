@@ -14,9 +14,14 @@ text {
   cursor: pointer;
 }
 
+.highlight {
+  /*stroke: var(--green);*/
+  stroke-width: 4px;
+}
+
 .scale {
   fill: transparent !important;
-  stroke: var(--grey) !important;
+  stroke: var(--dark-grey) !important;
 }
 
 .plot .star-plot .data-set-0 {

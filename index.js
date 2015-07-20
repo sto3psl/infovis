@@ -94,19 +94,28 @@ getJSON('./data/agency.json', function (data) {
         var p = document.querySelectorAll('.active p')
         for (var i = 0; i < p.length; i++) {
           p[i].innerHTML = ''
-        };
+        }
+
+        var highlight = document.querySelectorAll('.highlight')
+        for (i = 0; i < highlight.length; i++) {
+          highlight[i].classList.remove('highlight')
+        }
+
         var axis = evt.target.getAttribute('href')
         console.log(axis)
         var activePlots = document.querySelectorAll('.active')
         console.log(activePlots)
         var activeStops = []
-        for (var i = 0; i < visibleStops.data.length; i++) {
+        for (i = 0; i < visibleStops.data.length; i++) {
           for (var j = 0; j < activePlots.length; j++) {
             if ('stop-' + visibleStops.data[i].id === activePlots[j].id) {
               activeStops.push(visibleStops.data[i])
             }
           }
         }
+
+        var axes = document.querySelectorAll('line')
+        console.log(axes)
         console.log(activeStops)
         switch (axis) {
           case 'assets/Fahrten_Icon.svg':
@@ -116,6 +125,7 @@ getJSON('./data/agency.json', function (data) {
               value.innerHTML = activeStops[i].getTripCount()
               activePlots[i].appendChild(value)
             }
+            axes[0].classList.add('highlight')
             break
           case 'assets/Durchschnitt_Icon.svg':
             for (i = 0; i < activeStops.length; i++) {
@@ -123,6 +133,7 @@ getJSON('./data/agency.json', function (data) {
               value.innerHTML = activeStops[i].getAverageTripsPerRoute()
               activePlots[i].appendChild(value)
             }
+            axes[1].classList.add('highlight')
             break
           case 'assets/Linie_Icon.svg':
             for (i = 0; i < activeStops.length; i++) {
@@ -130,6 +141,7 @@ getJSON('./data/agency.json', function (data) {
               value.innerHTML = activeStops[i].getRouteCount()
               activePlots[i].appendChild(value)
             }
+            axes[2].classList.add('highlight')
             break
           case 'assets/Verbuende_Icon.svg':
             for (i = 0; i < activeStops.length; i++) {
@@ -137,6 +149,7 @@ getJSON('./data/agency.json', function (data) {
               value.innerHTML = activeStops[i].getAgencyCount()
               activePlots[i].appendChild(value)
             }
+            axes[3].classList.add('highlight')
             break
           case 'assets/Typen_Icon.svg':
             for (i = 0; i < activeStops.length; i++) {
@@ -144,6 +157,7 @@ getJSON('./data/agency.json', function (data) {
               value.innerHTML = activeStops[i].getTypeCount()
               activePlots[i].appendChild(value)
             }
+            axes[4].classList.add('highlight')
             break
         }
       })
