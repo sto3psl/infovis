@@ -139,14 +139,14 @@ li {
 main {
   display: flex;
   justify-content: center;
-  min-width: 1024px;
-  max-width: 80vw;
+/*  min-width: 1024px;
+  max-width: 80vw;*/
   margin: 0 auto;
 }
 
 .plot, .small-plots {
-  height: 50%;
-  width: 50%;
+  height: 50vw;
+  width: 50vw;
 }
 
 .plot,
