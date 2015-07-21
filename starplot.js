@@ -93,18 +93,8 @@ Starplot.prototype.drawAxes = function (data) {
     })
     .attr('width', '20px')
     .attr('height', '20px')
-    // .on('click', function (axis) {
-    //   var el = this
-    //   Starplot.showAxisValues(el)
-    // })
   return Starplot
 }
-
-// Starplot.showAxisValues = function (el) {
-//   console.log(el)
-//   var smallPlots = document.querySelectorAll('.small-plots .star-plot')
-//   console.log(smallPlots)
-// }
 
 Starplot.prototype.addAxisScale = function () {
   var data = this.data[1]

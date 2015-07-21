@@ -89,6 +89,11 @@ header ul {
   left: calc((100vw / 2) - 20px);
 }
 
+#show-filter:focus,
+#show-filter:active {
+  outline: none;
+}
+
 .rotated {
   transform: rotate(180deg);
 }
@@ -115,7 +120,12 @@ select {
   padding: var(--padding-lr);
   overflow: hidden;
   text-overflow: ellipsis;
-  /*-webkit-appearance: none;*/
+}
+
+input:active, 
+input:focus {
+  outline: none;
+  border: 1px solid var(--blue);
 }
 
 select:hover {
@@ -139,8 +149,6 @@ li {
 main {
   display: flex;
   justify-content: center;
-/*  min-width: 1024px;
-  max-width: 80vw;*/
   margin: 0 auto;
   max-width: 1024px
 }

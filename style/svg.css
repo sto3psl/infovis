@@ -1,5 +1,6 @@
 svg {
   background: var(--light-grey);
+  width: 100%;
 }
 
 text {
@@ -15,7 +16,6 @@ text {
 }
 
 .highlight {
-  /*stroke: var(--green);*/
   stroke-width: 4px;
 }
 
@@ -81,7 +81,6 @@ text {
 
 .small-plots .star-plot:hover svg{
   cursor: pointer;
-  /*background: color(var(--light-grey) l(90%));*/
 }
 
 .remove {
