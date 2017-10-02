@@ -1,17 +1,6 @@
+**This code is extremely outdated and just here so it won't get lost. I do not plan on updating anything. PR's welcome!**
+
 # InfoVis VBB-Fahrplandaten Starplot
-
-**Interaktive Informationsvisualisierung**
-
-**Professur für Multimedia-Technologie**
-
-**TU Dresden**
-
-## SSH-Keys
-
-Um überhaupt das Repository klonen zu können bzw. später commits zu pushen, müsst ihr SSH-Keys für Gitlab generieren.
-Dazu einfach dieser [Anleitung](https://git.imld.de/help/ssh/README.md) folgen.
-
-Danach könnt ihr mit der Installation beginnen.
 
 ## Installation
 Ladet euch [node.js](http://nodejs.org) herunter und installiert es.
@@ -32,12 +21,12 @@ npm install -g npm
 
 Mit npm werden wir unsere benötigen (javascript-) Pakete und Tools installieren. Es verwaltet Abhängigkeiten und Versionen für uns.
 
-Um mit dem Entwickeln beginnen zu können müsste ihr dieses Repository klonen, die Abhängigkeiten
+Um mit dem Entwickeln beginnen zu können müsst ihr dieses Repository klonen, die Abhängigkeiten
 installieren und den development server starten.
 Dazu führt ihr folgende Befehle aus:
 
 ```bash
-git clone git@git.imld.de:infovis/infovis-15-starplot.git
+git clone git@github.com:sto3psl/infovis.git
 npm install
 npm start
 ```
