@@ -2,5 +2,4 @@ node_modules
 *.log*
 build/*.css
 build/*.js
-data/*
 parser/*
